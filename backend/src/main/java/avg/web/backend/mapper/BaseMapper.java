@@ -1,7 +1,6 @@
 package avg.web.backend.mapper;
 
 
-
 import org.mapstruct.MappingTarget;
 
 /**

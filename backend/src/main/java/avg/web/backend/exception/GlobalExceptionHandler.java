@@ -3,7 +3,6 @@ package avg.web.backend.exception;
 
 import avg.web.backend.dto.response.ApiResponse;
 import avg.web.backend.enums.ErrorCode;
-import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -45,7 +44,8 @@ public class GlobalExceptionHandler {
 
         try {
             errorCode = ErrorCode.valueOf(enumKey);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException ignored) {
+
         }
 
 
@@ -67,17 +67,17 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(apiResponse);
     }
 
-    @ExceptionHandler(value = ExpiredJwtException.class)
-    ResponseEntity<ApiResponse> handlingExpiredJwtException(ExpiredJwtException exception){
-        ErrorCode errorCode = ErrorCode.TOKEN_EXPIRED;
-
-        return ResponseEntity
-                .status(errorCode.getStatus())
-                .body(ApiResponse.builder()
-                        .code(errorCode.getCode())
-                        .message(errorCode.getMessage())
-                        .build());
-    }
+//    @ExceptionHandler(value = ExpiredJwtException.class)
+//    ResponseEntity<ApiResponse> handlingExpiredJwtException(ExpiredJwtException exception){
+//        ErrorCode errorCode = ErrorCode.TOKEN_EXPIRED;
+//
+//        return ResponseEntity
+//                .status(errorCode.getStatus())
+//                .body(ApiResponse.builder()
+//                        .code(errorCode.getCode())
+//                        .message(errorCode.getMessage())
+//                        .build());
+//    }
 
     @ExceptionHandler(value = AccessDeniedException.class)
     ResponseEntity<ApiResponse> handlingAccessDeniedException(AccessDeniedException exception) {
