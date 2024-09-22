@@ -1,5 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-echo "Husky is working!"
-echo "Running pre-commit hook..." >> .husky/hook.log
