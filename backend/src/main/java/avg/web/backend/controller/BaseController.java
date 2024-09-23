@@ -9,8 +9,8 @@ import java.util.List;
  * BaseController provides a generic interface for CRUD operations on entities.
  *
  * @param <T> Type of the response entity.
- * @param <U> Type of the request data transfer object.
- * @param <I> Type of the entity identifier.
+ * @param <U> Type of the request data transfer object. ( DT0 -> Request )
+ * @param <I> Type of the entity identifier. ( type of the primary key like String, Long, etc. )
  */
 @RestController
 @RequestMapping("/api")
