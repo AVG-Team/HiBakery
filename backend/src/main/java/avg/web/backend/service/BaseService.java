@@ -7,8 +7,8 @@ import java.util.Optional;
 /**
  * BaseService interface for CRUD operations.
  *
- * @param <T> Type of the entity that this service handles.
- * @param <V> Type of the entity ID.
+ * @param <T> Type of the entity that this service handles. ( DTO -> Request )
+ * @param <V> Type of the entity ID. ( type of the primary key like String, Long, etc. )
  */
 public interface BaseService<T, V> {
 

@@ -1,4 +1,17 @@
 package avg.web.backend.dto.request;
 
-public class TestRequest {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class TestRequest  {
+    private String name;
+    private String email;
+    private String password;
+
 }
