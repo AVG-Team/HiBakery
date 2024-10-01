@@ -1,7 +1,6 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import PropTypes from 'prop-types';
+import { vi } from 'date-fns/locale'
 
 UserComment.propTypes = {
     name: PropTypes.string,
@@ -13,7 +12,7 @@ UserComment.propTypes = {
 
 export default function UserComment({name, comment, time, rating, avatar = "https://via.placeholder.com/150"}) {
     const timeDate = new Date(time)
-    const timeAgo = formatDistanceToNow(timeDate, { addSuffix: true });
+    const timeAgo = formatDistanceToNow(timeDate, { addSuffix: true, locale: vi });
 
     return (
         <article className="flex flex-wrap gap-5 items-start px-6 py-6 text-2xl tracking-tight bg-white rounded-[32px_32px_32px_0px] shadow-[0px_1px_6px_rgba(0,0,0,0.2)] max-md:px-5">
