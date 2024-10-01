@@ -7,7 +7,9 @@ import BasicLayout from "./layouts/BasicLayout";
 import BlankLayout from "./layouts/BlankLayout";
 
 const Home = loadable(() => import("./pages/Home"));
+const Products = loadable(() => import("./pages/Products"));
 const Login = loadable(() => import("./pages/Login"));
+const Product = loadable(() => import("./pages/Product"));
 
 export default function App() {
     return (
@@ -20,6 +22,22 @@ export default function App() {
                         element={
                             <Suspense fallback={<CircularProgress />}>
                                 <Home title="HomePage" />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/products"
+                        element={
+                            <Suspense fallback={<CircularProgress />}>
+                                <Products title="Products" />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/product/:id"
+                        element={
+                            <Suspense fallback={<CircularProgress />}>
+                                <Product title="Product" />
                             </Suspense>
                         }
                     />
