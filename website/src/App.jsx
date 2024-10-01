@@ -8,6 +8,7 @@ import BlankLayout from "./layouts/BlankLayout";
 
 const Home = loadable(() => import("./pages/Home"));
 const Login = loadable(() => import("./pages/Login"));
+const Cart = loadable(() => import("./pages/Cart"));
 
 export default function App() {
     return (
@@ -19,7 +20,15 @@ export default function App() {
                         index
                         element={
                             <Suspense fallback={<CircularProgress />}>
-                                <Home title="HomePage" />
+                                <Home title="Trang chủ" />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/gio-hang"
+                        element={
+                            <Suspense fallback={<CircularProgress />}>
+                                <Cart title="Giỏ hàng" />
                             </Suspense>
                         }
                     />
