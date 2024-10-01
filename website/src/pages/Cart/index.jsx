@@ -156,7 +156,7 @@ export default function Cart() {
     return (
         <div className="flex flex-col items-center justify-center w-full pt-20">
             <div className="flex flex-row items-center justify-between w-full max-w-6xl ">
-                <h1 className="text-3xl font-semibold text-Coral-Pink-500">Giỏ hàng</h1>
+                <h1 className="text-3xl font-semibold text-Coral-Pink-500">Cart Products</h1>
                 <div className="relative flex items-center p-2 ml-10 bg-white border-2 rounded-lg border-Coral-Pink-500">
                     <FontAwesomeIcon icon={faSearch} className="w-5 h-5 text-Coral-Pink-500" />
                     <input type="text" placeholder="Tìm kiếm" className="w-full pl-2 border-none focus:outline-none" />
