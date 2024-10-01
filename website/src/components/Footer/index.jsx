@@ -1,9 +1,9 @@
-import Logo from "../../assets/img/logo/HiBooking-logo.png";
+import Logo from "../../assets/img/logo/HiBakery-logo.png";
 export default function Footer() {
     return (
-        <footer className="w-full  px-4 mx-auto mt-5 max-w-container sm:px-6 lg:px-8">
+        <footer className="w-full px-4 mx-auto mt-5 max-w-container sm:px-6 lg:px-8">
             <div className="py-10 border-t-2 border-gray-200">
-                <img src={Logo} alt="logo-ct" className="mx-auto w-40 text-slate-900" />
+                <img src={Logo} alt="logo-ct" className="w-40 mx-auto text-slate-900" />
                 <p className="mt-5 text-sm leading-6 text-center text-slate-500">
                     &copy; Huynguyen with <span className="text-red-500">&#10084;</span>. All rights reserved.
                 </p>
