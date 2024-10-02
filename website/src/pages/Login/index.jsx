@@ -1,9 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
-import FormLogin from './components/FormLogin';
-import Nav from '../../components/Navbar';
-import Footer from '../../components/Footer';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import FormLogin from "./components/FormLogin";
 
 Login.propTypes = {
     title: PropTypes.string,
@@ -16,10 +13,8 @@ export default function Login(props) {
     }, [title]);
 
     return (
-        
-        <main className="d-flex justify-center">
-            
-            <FormLogin/>
+        <main className="justify-center d-flex">
+            <FormLogin />
         </main>
     );
 }

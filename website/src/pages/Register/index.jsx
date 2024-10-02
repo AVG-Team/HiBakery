@@ -1,9 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
-import FormRegister from './components/FormRegister';
-import Nav from '../../components/Navbar';
-import Footer from '../../components/Footer';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import FormRegister from "./components/FormRegister";
 
 Register.propTypes = {
     title: PropTypes.string,
@@ -16,9 +13,8 @@ export default function Register(props) {
     }, [title]);
 
     return (
-        
-        <main className="d-flex justify-center">
-            <FormRegister/>
+        <main className="flex justify-center">
+            <FormRegister />
         </main>
     );
 }
