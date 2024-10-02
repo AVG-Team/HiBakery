@@ -53,6 +53,9 @@ export default {
                     900: "#032C2C",
                 },
             },
+            screen: {
+                '3xl': '1920px',
+            }
         },
     },
     plugins: [],
