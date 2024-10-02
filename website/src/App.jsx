@@ -8,6 +8,7 @@ import BlankLayout from "./layouts/BlankLayout";
 
 const Home = loadable(() => import("./pages/Home"));
 const Login = loadable(() => import("./pages/Login"));
+// const Payment = loadable(() => import("./pages/Payment"));
 
 export default function App() {
     return (
@@ -23,6 +24,14 @@ export default function App() {
                             </Suspense>
                         }
                     />
+                    {/* <Route
+                        path="/thanh-toan"
+                        element={
+                            <Suspense fallback={<CircularProgress />}>
+                                <Payment title="HomePage" />
+                            </Suspense>
+                        }
+                    /> */}
                 </Route>
                 <Route element={<BlankLayout />}>
                     <Route
