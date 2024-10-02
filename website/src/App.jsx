@@ -3,34 +3,29 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import loadable from "@loadable/component";
 
-const Profile = loadable(() => import("./pages/Profile/index.jsx"));
-const PrivacyPolicy = loadable => import("./pages/PrivacyPolicy/index.jsx");
+const Profile = loadable(() => import("./pages/Profile"));
+const PrivacyPolicy = loadable(() => import("./pages/PrivacyPolicy"));
 
 export default function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route element={<AuthLayout />}>{/* <Route path="/logout" element={<Logout />} /> */}</Route>
-                <Route element={<BasicLayout />}>
-                    <Route
-                        index
-                        element={
-                            <Suspense fallback={<CircularProgress />}>
-                                <Home title="HomePage" />
-                            </Suspense>
-                        }
-                    />
-                </Route>
-                <Route element={<BlankLayout />}>
-                    <Route
-                        path="/dang-nhap"
-                        element={
-                            <Suspense fallback={<CircularProgress />}>
-                                <Login title="Đăng nhập" />
-                            </Suspense>
-                        }
-                    />
-                </Route>
+                <Route
+                    path="/thong-tin-ca-nhan"
+                    element={
+                    <Suspense fallback={<CircularProgress />}>
+                        <Profile title="Thông tin cá nhân" />
+                    </Suspense>
+                    }
+                />
+                <Route
+                    path="/policy-delivery"
+                    element={
+                    <Suspense fallback={<CircularProgress />}>
+                        <PrivacyPolicy title="Chính sách bảo mật" />
+                    </Suspense>
+                    }
+                />
             </Routes>
         </BrowserRouter>
     );
