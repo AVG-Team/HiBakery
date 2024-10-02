@@ -8,7 +8,7 @@ import BlankLayout from "./layouts/BlankLayout";
 
 const Home = loadable(() => import("./pages/Home"));
 const Login = loadable(() => import("./pages/Login"));
-
+const Register = loadable(() => import("./pages/Register"));
 export default function App() {
     return (
         <BrowserRouter>
@@ -30,6 +30,16 @@ export default function App() {
                         element={
                             <Suspense fallback={<CircularProgress />}>
                                 <Login title="Đăng nhập" />
+                            </Suspense>
+                        }
+                    />
+                </Route>
+                <Route element={<BlankLayout />}>
+                    <Route
+                        path="/dang-ki"
+                        element={
+                            <Suspense fallback={<CircularProgress />}>
+                                <Register title="Đăng kí" />
                             </Suspense>
                         }
                     />
