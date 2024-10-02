@@ -18,7 +18,8 @@ export default function ProductDetailPage(props) {
     id = parseInt(id);
 
     return (
-        <div className="flex overflow-hidden justify-center">
+        // Todo : when the top of the page header is not pushed down
+        <div className="flex overflow-hidden justify-center mt-20">
             <ProductDetail id={id}/>
             {/*<div className="flex flex-col items-start p-1.5 text-xs bg-zinc-100 rotate-[1.5664767548527059rad] text-stone-300 max-md:hidden">*/}
             {/*    <img loading="lazy"*/}

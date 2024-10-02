@@ -18,7 +18,8 @@ export default function Products(props) {
     }, [title]);
 
     return (
-        <main className="w-full flex 2xl:justify-center">
+        // Todo : when the top of the page header is not pushed down
+        <main className="w-full flex 2xl:justify-center mt-20">
             <div className="2xl:container px-4 w-full">
                 <div className="flex flex-col items-center mb-8">
                     <h1 className="text-black text-3xl font-bold">Products</h1>

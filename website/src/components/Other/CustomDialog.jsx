@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import Logo from "../../assets/img/logo/HiBooking-logo.png";
+import Logo from "../../assets/img/logo/HiBakery-logo.png";
 
 // eslint-disable-next-line react/prop-types
 export default function CustomDialog({ isOpen, onClose, productName, productPrice }) {
