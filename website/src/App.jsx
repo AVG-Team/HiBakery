@@ -7,8 +7,11 @@ import BasicLayout from "./layouts/BasicLayout";
 import BlankLayout from "./layouts/BlankLayout";
 
 const Home = loadable(() => import("./pages/Home"));
+const Products = loadable(() => import("./pages/Products"));
+const Product = loadable(() => import("./pages/Product"));
 const Login = loadable(() => import("./pages/Login"));
 const Register = loadable(() => import("./pages/Register"));
+const Cart = loadable(() => import("./pages/Cart"));
 export default function App() {
     return (
         <BrowserRouter>
@@ -19,7 +22,31 @@ export default function App() {
                         index
                         element={
                             <Suspense fallback={<CircularProgress />}>
-                                <Home title="HomePage" />
+                                <Home title="Trang chủ" />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/gio-hang"
+                        element={
+                            <Suspense fallback={<CircularProgress />}>
+                                <Cart title="Giỏ hàng" />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/products"
+                        element={
+                            <Suspense fallback={<CircularProgress />}>
+                                <Products title="Products" />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/product/:id"
+                        element={
+                            <Suspense fallback={<CircularProgress />}>
+                                <Product title="Product" />
                             </Suspense>
                         }
                     />

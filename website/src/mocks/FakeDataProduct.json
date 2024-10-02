@@ -1,0 +1,85 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Bánh Kem",
+      "price": 100000,
+      "rating": 4.7,
+      "size": ["12", "15", "18", "24", "26"],
+      "description": "A delicious cake perfect for any celebration. Accumsan lectus, consectetuer et sagittis et commodo, massa et, sed facilisi mi, sit diam. Ultrices facilisi convallis nullam duis. Aliquam lacinia orci convallis erat ac, vitae neque in class. Suscipit vel, rhoncus est quis nibh netus, aenean eleifend et viverra, neque accumsan maecenas nec in. Morbi bibendum non ullamcorper aliquam natoque, tortor dui, vestibulum vulputate pulvinar iaculis magna lectus ut, facilisis id mollis risus lorem. Massa nulla cum nunc litora ac amet, accumsan faucibus integer, vestibulum turpis cras, ante imperdiet tincidunt accumsan, vivamus lacinia bibendum augue maiores mauris.",
+      "image": "https://via.placeholder.com/150",
+      "tags": ["Birthday", "Wedding", "Anniversary", "testttttttttttttttttttttttt"],
+      "category": "cake"
+    },
+    {
+      "id": 2,
+      "name": "Bánh Mì",
+      "price": 20000,
+      "rating": 4.5,
+      "size": ["20", "25", "30"],
+      "description": "A savory Vietnamese pancake made with rice flour and turmeric.",
+      "image": "https://via.placeholder.com/150",
+      "tags": ["Breakfast", "Lunch", "Dinner"],
+      "category": "bread"
+    },
+    {
+      "id": 3,
+      "name": "Bánh Bao",
+      "price": 15000,
+      "rating": 4.6,
+      "size": ["20", "25", "30"],
+      "description": "A savory Vietnamese pancake made with rice flour and turmeric.",
+      "image": "https://via.placeholder.com/150",
+      "tags": ["Breakfast", "Lunch", "Dinner"],
+      "category": "bread"
+    },
+    {
+      "id": 4,
+      "name": "Bánh Quy",
+      "price": 30000,
+      "rating": 4.8,
+      "size": ["20", "25", "30"],
+      "description": "A savory Vietnamese pancake made with rice flour and turmeric.",
+      "image": "https://via.placeholder.com/150",
+      "tags": ["Breakfast", "Lunch", "Dinner", "Snack"],
+      "category": "bread"
+    },
+    {
+      "id": 5,
+      "name": "Bánh Donut",
+      "price": 25000,
+      "rating": 4.9,
+      "size": ["15", "20", "25"],
+      "description": "A delicate and thin rice noodle roll filled with ground pork and mushrooms.",
+      "image": "https://via.placeholder.com/150",
+      "tags": ["Breakfast", "Lunch", "Dinner"],
+      "category": "bread"
+    }
+  ],
+  "relatedProducts": [
+    {
+      "id": 1,
+      "name": "Cupcake",
+      "price": "101199",
+      "rating": 4.0,
+      "description": "Món ăn nhẹ ngọt ngào và đáng yêu",
+      "image": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 2,
+      "name": "Cupcake",
+      "price": "101199",
+      "rating": 4.0,
+      "description": "Món ăn nhẹ ngọt ngào và đáng yêu",
+      "image": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 3,
+      "name": "Cupcake",
+      "price": "101199",
+      "rating": 4.0,
+      "description": "Món ăn nhẹ ngọt ngào và đáng yêu",
+      "image": "https://via.placeholder.com/150"
+    }
+  ]
+}
