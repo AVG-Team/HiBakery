@@ -1,9 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import FormLogin from './components/FormLogin';
-import Nav from '../../components/Navbar';
-import Footer from '../../components/Footer';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 Login.propTypes = {
     title: PropTypes.string,
