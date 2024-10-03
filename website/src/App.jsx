@@ -11,10 +11,10 @@ const Home = loadable(() => import("./pages/Home"));
 const Products = loadable(() => import("./pages/Products"));
 const Product = loadable(() => import("./pages/Product"));
 const Login = loadable(() => import("./pages/Login"));
+const Register = loadable(() => import("./pages/Register"));
+const Cart = loadable(() => import("./pages/Cart"));
 const AboutUs = loadable(() => import("./pages/AboutUs"))
-const Cart = loadable(() => import("./pages/Cart"))
 const Payment = loadable(() => import("./pages/Payment"));
-
 export default function App() {
     return (
         <BrowserRouter>
@@ -85,6 +85,16 @@ export default function App() {
                         element={
                             <Suspense fallback={<CircularProgress />}>
                                 <Login title="Đăng nhập" />
+                            </Suspense>
+                        }
+                    />
+                </Route>
+                <Route element={<BlankLayout />}>
+                    <Route
+                        path="/dang-ki"
+                        element={
+                            <Suspense fallback={<CircularProgress />}>
+                                <Register title="Đăng kí" />
                             </Suspense>
                         }
                     />
