@@ -8,10 +8,12 @@ import BlankLayout from "./layouts/BlankLayout";
 import MultiStepForm from "./pages/Payment/components/MultiStepForm";
 const Payment = loadable(() => import("./pages/Payment"))
 const Home = loadable(() => import("./pages/Home"));
+const Products = loadable(() => import("./pages/Products"));
+const Product = loadable(() => import("./pages/Product"));
 const Login = loadable(() => import("./pages/Login"));
 const AboutUs = loadable(() => import("./pages/AboutUs"))
 const Cart = loadable(() => import("./pages/Cart"))
-// const Payment = loadable(() => import("./pages/Payment"));
+const Payment = loadable(() => import("./pages/Payment"));
 
 export default function App() {
     return (
@@ -23,7 +25,31 @@ export default function App() {
                         index
                         element={
                             <Suspense fallback={<CircularProgress />}>
-                                <Home title="HomePage" />
+                                <Home title="Trang chủ" />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/gio-hang"
+                        element={
+                            <Suspense fallback={<CircularProgress />}>
+                                <Cart title="Giỏ hàng" />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/products"
+                        element={
+                            <Suspense fallback={<CircularProgress />}>
+                                <Products title="Products" />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/product/:id"
+                        element={
+                            <Suspense fallback={<CircularProgress />}>
+                                <Product title="Product" />
                             </Suspense>
                         }
                     />
