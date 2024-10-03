@@ -13,6 +13,8 @@ const Product = loadable(() => import("./pages/Product"));
 const Login = loadable(() => import("./pages/Login"));
 const Register = loadable(() => import("./pages/Register"));
 const Cart = loadable(() => import("./pages/Cart"));
+const Profile = loadable(() => import("./pages/Profile"));
+const PrivacyPolicy = loadable(() => import("./pages/PrivacyPolicy"));
 const AboutUs = loadable(() => import("./pages/AboutUs"))
 const Payment = loadable(() => import("./pages/Payment"));
 export default function App() {
@@ -53,7 +55,22 @@ export default function App() {
                             </Suspense>
                         }
                     />
-                    
+                    <Route
+                        path="/thong-tin-ca-nhan"
+                        element={
+                            <Suspense fallback={<CircularProgress />}>
+                                <Profile title="Thông tin cá nhân" />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/policy-delivery"
+                        element={
+                            <Suspense fallback={<CircularProgress />}>
+                                <PrivacyPolicy title="Chính sách bảo mật" />
+                            </Suspense>
+                        }
+                    />
                 </Route>
                 <Route 
                         path="/thanh-toan"
