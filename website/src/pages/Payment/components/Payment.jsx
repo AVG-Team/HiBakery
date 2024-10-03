@@ -1,6 +1,6 @@
 // Step3.js
 import React, { useState } from 'react';
-const Step3 = ({ prevStep }) => {
+const Payment = ({ prevStep }) => {
   const [selectedMethod, setSelectedMethod] = useState('pay_on_delivery');
 
   const paymentMethods = [
@@ -47,10 +47,10 @@ const Step3 = ({ prevStep }) => {
 
         {/* Navigation Buttons */}
         <div className="flex justify-between mt-6">
-          <button onClick={prevStep} className="px-6 py-2 border rounded border-pink-500 text-pink-500 hover:bg-pink-100 transition">
+          <button onClick={prevStep} className="px-6 py-2 border rounded border-[#f05a7e] text-[#f05a7e] hover:bg-[#f05a7e]-100 transition">
             Back
           </button>
-          <button className="px-6 py-2 bg-pink-500 text-white rounded hover:bg-pink-600 transition">
+          <button className="px-6 py-2 bg-[#f05a7e]-500 text-white rounded hover:bg-[#f05a7e]-600 transition">
             Pay $164.23
           </button>
         </div>
@@ -59,4 +59,4 @@ const Step3 = ({ prevStep }) => {
   );
 };
 
-export default Step3;
+export default Payment;

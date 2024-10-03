@@ -29,7 +29,7 @@ const Shipping = ({ nextStep }) => {
         </label>
       </div>
 
-      <button onClick={nextStep} className="w-full p-3 bg-pink-500 text-white rounded">Continue</button>
+      <button onClick={nextStep} className="w-full p-3 bg-[#f05a7e] text-white rounded">Continue</button>
     </div>
   );
 };
