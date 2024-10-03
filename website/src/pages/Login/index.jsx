@@ -14,10 +14,8 @@ export default function Login(props) {
     }, [title]);
 
     return (
-        
-        <main className="d-flex justify-center">
-            
-            <FormLogin/>
+        <main className="justify-center d-flex">
+            <FormLogin />
         </main>
     );
 }
