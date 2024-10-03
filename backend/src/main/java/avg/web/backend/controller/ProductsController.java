@@ -1,29 +1,38 @@
 package avg.web.backend.controller;
 
-public class ProductController extends BaseController<Product, ProductRequest, String> {
+import avg.web.backend.dto.request.ProductsRequest;
+import avg.web.backend.entities.Products;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController("/products")
+public class ProductsController extends BaseController<Products, ProductsRequest, Long> {
+
 
     @Override
-    public ResponseEntity<Product> create(ProductRequest request) {
+    public ResponseEntity<Products> create(ProductsRequest request) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Product> update(String id, ProductRequest request) {
+    public ResponseEntity<Products> update(Long id, ProductsRequest request) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Product> delete(ProductRequest request) {
+    public ResponseEntity<Products> delete(ProductsRequest request) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Product> get(ProductRequest request) {
+    public ResponseEntity<Products> get(ProductsRequest request) {
         return null;
     }
 
     @Override
-    public ResponseEntity<List<Product>> getAll() {
+    public ResponseEntity<List<Products>> getAll() {
         return null;
     }
 }

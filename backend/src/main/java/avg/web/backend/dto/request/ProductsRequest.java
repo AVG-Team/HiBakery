@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductRequest {
+public class ProductsRequest {
     Long id;
     String title;
     String description;
