@@ -15,4 +15,12 @@ public class ProductsResponse {
     String description;
     String code;
     Long categoryId;
+
+    public ProductsResponse(Products products) {
+        this.id = products.getId();
+        this.title = products.getTitle();
+        this.description = products.getDescription();
+        this.code = products.getCode();
+        this.categoryId = products.getCategoryId();
+    }
 }

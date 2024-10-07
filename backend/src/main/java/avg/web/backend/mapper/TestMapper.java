@@ -1,6 +1,7 @@
 package avg.web.backend.mapper;
 
 import avg.web.backend.dto.request.TestRequest;
+import avg.web.backend.entities.Products;
 import avg.web.backend.entities.Users;
 
 public class TestMapper implements BaseMapper<TestRequest, Users> {
@@ -12,7 +13,7 @@ public class TestMapper implements BaseMapper<TestRequest, Users> {
     }
 
     @Override
-    public TestRequest toEntity(Users dto) {
+    public TestRequest toEntity(Products dto) {
         return null;
     }
 

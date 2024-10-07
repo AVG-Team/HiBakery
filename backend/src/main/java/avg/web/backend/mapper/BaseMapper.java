@@ -1,6 +1,7 @@
 package avg.web.backend.mapper;
 
 
+import avg.web.backend.entities.Products;
 import org.mapstruct.MappingTarget;
 
 /**
@@ -25,7 +26,7 @@ public interface BaseMapper<E, D> {
      * @param dto the DTO to convert.
      * @return the converted entity.
      */
-    E toEntity(D dto);
+    E toEntity(Products dto);
 
     /**
      * Updates the entity with values from the DTO.

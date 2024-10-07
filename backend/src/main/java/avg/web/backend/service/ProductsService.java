@@ -6,17 +6,21 @@ import avg.web.backend.entities.Products;
 import avg.web.backend.enums.ErrorCode;
 import avg.web.backend.exception.AppException;
 import avg.web.backend.exception.GlobalExceptionHandler;
+import avg.web.backend.mapper.ProductsMapper;
 import avg.web.backend.repository.ProductsRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+@FieldDefaults(level = lombok.AccessLevel.PRIVATE)
 public class ProductsService implements BaseService<ProductsRequest, ProductsResponse, Long> {
-
-    private final ProductsRepository productsRepository;
+    @Autowired
+    ProductsRepository productsRepository;
+    ProductsMapper productsMapper;
 
     @Override
     public Optional<ProductsResponse> findById(Long id) {
@@ -27,11 +31,16 @@ public class ProductsService implements BaseService<ProductsRequest, ProductsRes
            throw new AppException(ErrorCode.NOT_FOUND);
         }
 
-        return productsRepository.findById(id).map(ProductsResponse::new);
+
+
+        return Optional.ofNullable(productsMapper.toDto(productsMapper.toEntity(productsRepository.findById(id).get())));
     }
 
     @Override
     public ProductsResponse create(ProductsRequest entity) {
+        if(entity == null) {
+            throw new AppException(ErrorCode.INVALID_REQUEST);
+        }
         return null;
     }
 
