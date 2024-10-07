@@ -1,37 +1,55 @@
 package avg.web.backend.mapper;
 
-
 import org.mapstruct.MappingTarget;
 
+import java.util.List;
+
 /**
- * BaseMapper provides generic mapping methods for entities and DTOs.
+ * BaseMapper provides generic mapping methods for entities, request DTOs, and response DTOs.
  *
  * @param <E> Type of the entity.
- * @param <D> Type of the Data Transfer Object (DTO).
+ * @param <Q> Type of the Request DTO.
+ * @param <R> Type of the Response DTO.
  */
-public interface BaseMapper<E, D> {
+public interface BaseMapper<E, Q, R> {
 
     /**
-     * Converts entity to DTO.
+     * Converts entity to response DTO.
      *
      * @param entity the entity to convert.
-     * @return the converted DTO.
+     * @return the converted response DTO.
      */
-    D toDto(E entity);
+    R toResponse(E entity);
 
     /**
-     * Converts DTO to entity.
+     * Converts request DTO to entity.
      *
-     * @param dto the DTO to convert.
+     * @param request the request DTO to convert.
      * @return the converted entity.
      */
-    E toEntity(D dto);
+    E toEntity(Q request);
 
     /**
-     * Updates the entity with values from the DTO.
+     * Updates the entity with values from the request DTO.
      *
-     * @param dto the DTO with new values.
+     * @param request the request DTO with new values.
      * @param entity the entity to update.
      */
-    void updateEntityFromDto(D dto, @MappingTarget E entity);
+    void updateEntityFromRequest(Q request, @MappingTarget E entity);
+
+    /**
+     * Converts a list of entities to a list of response DTOs.
+     *
+     * @param entities the list of entities to convert.
+     * @return the list of converted response DTOs.
+     */
+    List<R> toResponseList(List<E> entities);
+
+    /**
+     * Converts a list of request DTOs to a list of entities.
+     *
+     * @param requests the list of request DTOs to convert.
+     * @return the list of converted entities.
+     */
+    List<E> toEntityList(List<Q> requests);
 }
