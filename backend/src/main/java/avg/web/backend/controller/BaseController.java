@@ -1,5 +1,6 @@
 package avg.web.backend.controller;
 
+import avg.web.backend.dto.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public abstract class BaseController<T, U, I> {
      * @return the created entity.
      */
     @PostMapping("")
-    public abstract ResponseEntity<T> create(@RequestBody U request);
+    public abstract ApiResponse<T> create(@RequestBody U request);
 
     /**
      * Updates an existing entity.
@@ -33,7 +34,7 @@ public abstract class BaseController<T, U, I> {
      * @return the updated entity.
      */
     @PutMapping("/{id}")
-    public abstract ResponseEntity<T> update(@PathVariable I id, @RequestBody U request);
+    public abstract ApiResponse<T> update(@PathVariable I id, @RequestBody U request);
 
     /**
      * Deletes an entity.
@@ -42,7 +43,7 @@ public abstract class BaseController<T, U, I> {
      * @return a response indicating the result of the deletion.
      */
     @DeleteMapping("")
-    public abstract ResponseEntity<T> delete(@RequestBody U request);
+    public abstract ApiResponse<T> delete(@RequestBody U request);
 
     /**
      * Retrieves an entity by its identifier.
@@ -51,7 +52,7 @@ public abstract class BaseController<T, U, I> {
      * @return the found entity.
      */
     @GetMapping("")
-    public abstract ResponseEntity<T> get(@RequestBody U request);
+    public abstract ApiResponse<T> get(@RequestBody U request);
 
     /**
      * Retrieves all entities.
@@ -59,5 +60,5 @@ public abstract class BaseController<T, U, I> {
      * @return a list of all entities.
      */
     @GetMapping("/all")
-    public abstract ResponseEntity<List<T>> getAll();
+    public abstract ApiResponse<T> getAll();
 }

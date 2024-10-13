@@ -16,9 +16,10 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
 public class ProductsService implements BaseService<ProductsRequest, ProductsResponse, Long> {
-    @Autowired
+
     ProductsRepository productsRepository;
     ProductsMapper productsMapper;
 
@@ -30,27 +31,46 @@ public class ProductsService implements BaseService<ProductsRequest, ProductsRes
         if(productsRepository.findById(id).isEmpty()){
            throw new AppException(ErrorCode.NOT_FOUND);
         }
-
-
-
-        return Optional.ofNullable(productsMapper.toDto(productsMapper.toEntity(productsRepository.findById(id).get())));
+        Optional<Products> productsResponse = productsRepository.findById(id);
+        return productsResponse.map(productsMapper::toResponse);
     }
 
     @Override
     public ProductsResponse create(ProductsRequest entity) {
-        if(entity == null) {
+        if(entity == null || entity.getId() == null) {
             throw new AppException(ErrorCode.INVALID_REQUEST);
         }
-        return null;
+        productsRepository.save(productsMapper.toEntity(entity));
+        if(entity.getId() == null) {
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+        return productsMapper.toResponse(productsRepository.findById(entity.getId()).get());
     }
 
     @Override
     public ProductsResponse update(Long id, ProductsRequest entity) {
-        return null;
+        if(entity == null || entity.getId() == null) {
+            throw new AppException(ErrorCode.INVALID_REQUEST);
+        }
+        if(productsRepository.findById(id).isEmpty()){
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+
+        productsRepository.save(productsMapper.toEntity(entity));
+        if(entity.getId() == null) {
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+        return productsMapper.toResponse(productsRepository.findById(entity.getId()).get()) ;
     }
 
     @Override
     public void delete(Long id) {
-
+        if(id == null) {
+            throw new AppException(ErrorCode.INVALID_REQUEST);
+        }
+        if(productsRepository.findById(id).isEmpty()){
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+        productsRepository.deleteById(id);
     }
 }

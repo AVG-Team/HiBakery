@@ -1,5 +1,6 @@
 package avg.web.backend.entities;
 
+import avg.web.backend.dto.response.ProductsResponse;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,4 +38,5 @@ public class Products extends BaseEntity {
     @NotNull(message = "Category ID cannot be null")
     @Min(value = 1, message = "Category ID must be at least 1")
     Long categoryId;
+
 }
