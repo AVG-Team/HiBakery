@@ -48,17 +48,17 @@ public abstract class BaseController<T, U, I> {
     /**
      * Retrieves an entity by its identifier.
      *
-     * @param request the identifier or criteria to find the entity.
+     * @param id the identifier or criteria to find the entity.
      * @return the found entity.
      */
-    @GetMapping("")
-    public abstract ApiResponse<T> get(@RequestBody U request);
+    @GetMapping("{id}")
+    public abstract ApiResponse<T> get(@RequestParam("id") I id);
 
     /**
      * Retrieves all entities.
      *
      * @return a list of all entities.
      */
-    @GetMapping("/all")
+    @GetMapping("")
     public abstract ApiResponse<T> getAll();
 }

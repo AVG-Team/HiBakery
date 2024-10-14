@@ -12,7 +12,7 @@ import java.util.List;
  * @param <Q> Type of the Request DTO.
  * @param <R> Type of the Response DTO.
  */
-@Mapper(componentModel = "spring")
+
 public interface BaseMapper<E, Q, R> {
 
     /**

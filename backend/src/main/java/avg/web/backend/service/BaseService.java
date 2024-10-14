@@ -22,6 +22,12 @@ public interface BaseService<T,R, V> {
     Optional<R> findById(V id);
 
     /**
+     *  Find all entity of table
+     *
+     *  @return an Optional containing the all entity, or an empty Optional if no entity is found with the given ID
+     */
+    R findAll();
+    /**
      * Creates a new entity in the database.
      *
      * @param entity the entity to be created.

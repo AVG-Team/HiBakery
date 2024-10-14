@@ -5,15 +5,15 @@ import avg.web.backend.dto.response.ProductsResponse;
 import avg.web.backend.entities.Products;
 import avg.web.backend.enums.ErrorCode;
 import avg.web.backend.exception.AppException;
-import avg.web.backend.exception.GlobalExceptionHandler;
 import avg.web.backend.mapper.ProductsMapper;
 import avg.web.backend.repository.ProductsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +22,20 @@ public class ProductsService implements BaseService<ProductsRequest, ProductsRes
 
     ProductsRepository productsRepository;
     ProductsMapper productsMapper;
+
+
+    @Override
+    public ProductsResponse findAll() {
+        List<Products> products = productsRepository.findAll();
+
+        if (products.isEmpty()) {
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+
+        return (ProductsResponse) products.stream()
+                .map(productsMapper::toResponse)
+                .collect(Collectors.toList());
+    }
 
     @Override
     public Optional<ProductsResponse> findById(Long id) {
