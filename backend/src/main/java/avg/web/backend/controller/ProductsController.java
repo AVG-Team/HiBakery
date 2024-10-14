@@ -3,11 +3,8 @@ package avg.web.backend.controller;
 import avg.web.backend.dto.request.ProductsRequest;
 import avg.web.backend.dto.response.ApiResponse;
 import avg.web.backend.dto.response.ProductsResponse;
-import avg.web.backend.entities.Products;
-import avg.web.backend.service.ProductsService;
+import avg.web.backend.service.impl.ProductsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,7 +51,7 @@ public class ProductsController extends BaseController<ProductsResponse, Product
     public ApiResponse<ProductsResponse> getAll() {
         System.out.println("hehe");
         return ApiResponse.<ProductsResponse>builder()
-                .result(productsService.findAll())
+                .result(productsService.getAll())
                 .code(200)
                 .build();
     }
