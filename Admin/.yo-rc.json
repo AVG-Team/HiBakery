@@ -1,0 +1,23 @@
+{
+  "generator-jhipster": {
+    "baseName": "admin",
+    "clientFramework": "react",
+    "clientTestFrameworks": [],
+    "clientTheme": "vapor",
+    "clientThemeVariant": "primary",
+    "creationTimestamp": 1728993487273,
+    "devServerPort": 9060,
+    "enableTranslation": true,
+    "entities": [],
+    "jhipsterVersion": "8.7.1",
+    "languages": ["en"],
+    "microfrontend": null,
+    "microfrontends": [],
+    "monorepository": true,
+    "nativeLanguage": "en",
+    "skipCommitHook": true,
+    "skipServer": true,
+    "testFrameworks": [],
+    "withAdminUi": true
+  }
+}

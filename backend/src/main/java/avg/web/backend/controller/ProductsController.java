@@ -5,17 +5,19 @@ import avg.web.backend.dto.response.ApiResponse;
 import avg.web.backend.dto.response.ProductsResponse;
 import avg.web.backend.service.impl.ProductsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 @RequiredArgsConstructor
-public class ProductsController extends BaseController<ProductsResponse, ProductsRequest, Long> {
+public class ProductsController {
 
+    @Autowired
     private ProductsService productsService;
 
-    @Override
+
+    @PostMapping("")
     public ApiResponse<ProductsResponse> create(ProductsRequest request) {
         return ApiResponse.<ProductsResponse>builder()
                 .result(productsService.create(request))
@@ -23,7 +25,7 @@ public class ProductsController extends BaseController<ProductsResponse, Product
                 .build();
     }
 
-    @Override
+    @PutMapping("/{id}")
     public ApiResponse<ProductsResponse> update(Long id, ProductsRequest request) {
         return ApiResponse.<ProductsResponse>builder()
                 .result(productsService.update(id,request))
@@ -31,7 +33,8 @@ public class ProductsController extends BaseController<ProductsResponse, Product
                 .build();
     }
 
-    @Override
+
+    @DeleteMapping("")
     public ApiResponse<ProductsResponse> delete(ProductsRequest request) {
         productsService.delete(request.getId());
         return ApiResponse.<ProductsResponse>builder()
@@ -39,17 +42,17 @@ public class ProductsController extends BaseController<ProductsResponse, Product
                 .build();
     }
 
-    @Override
+
+    @GetMapping("{id}")
     public ApiResponse<ProductsResponse> get(Long id) {
         return ApiResponse.<ProductsResponse>builder()
-                .result(productsService.findById(id).orElse(null))
+                .result(productsService.getByID(id))
                 .code(200)
                 .build();
     }
 
-    @Override
+    @GetMapping("")
     public ApiResponse<ProductsResponse> getAll() {
-        System.out.println("hehe");
         return ApiResponse.<ProductsResponse>builder()
                 .result(productsService.getAll())
                 .code(200)

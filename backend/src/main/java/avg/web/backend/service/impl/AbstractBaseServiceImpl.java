@@ -35,14 +35,14 @@ public abstract class AbstractBaseServiceImpl<T, E> implements BaseService<T, E>
     }
 
     @Override
-    public List<E> getAll() {
+    public E getAll() {
         setRepository();
         List<T> entities = (List<T>) getRepositry().findAll();
-        return (List<E>) entities.stream().map((entity) -> mapper.convertEntityToDTO(entity)).toList();
+        return (E) entities.stream().map((entity) -> mapper.convertEntityToDTO(entity)).toList();
     }
 
     @Override
-    public E update(T DTO) {
+    public <ID> E update(ID id ,T DTO) {
         setRepository();
         Object entity = mapper.convertDTOToEntity(DTO);
         return (E) mapper.convertEntityToDTO(getRepositry().save(entity));

@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Service
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
-public class ProductsService extends AbstractBaseServiceImpl<ProductsRequest,ProductsResponse >
+public class ProductsService extends AbstractBaseServiceImpl<ProductsRequest,ProductsResponse>
         implements ProductService {
 
     @Autowired

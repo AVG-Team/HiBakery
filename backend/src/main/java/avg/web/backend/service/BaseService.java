@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface BaseService<T, E> {
     E create(T DTO);
     <ID> E getByID(ID idDTO);
-    List<E> getAll();
-    E update(T DTO);
+    E getAll();
+    <ID> E update(ID id,T DTO);
     <ID> void delete(ID idDTO);
 }
