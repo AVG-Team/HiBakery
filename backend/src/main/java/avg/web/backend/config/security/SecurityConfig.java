@@ -26,13 +26,17 @@ import javax.crypto.spec.SecretKeySpec;
 public class SecurityConfig {
 
     private final String[] WHITE_LIST = {
-            "/v2/api-docs",
+            "/v3/api-docs/**",
             "/swagger-resources",
             "/swagger-resources/**",
             "/configuration/ui",
             "/configuration/security",
             "/swagger-ui.html",
+            "/swagger-ui/**",
+            "/swagger-ui/index.html",
             "/webjars/**",
+            "/api/products/**",
+            "/products/**",
     };
 
     @Value("jwt.secret.key")
@@ -42,8 +46,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests( request ->
-                request.requestMatchers(HttpMethod.POST,WHITE_LIST).permitAll()
-                        .requestMatchers(HttpMethod.PUT,WHITE_LIST).permitAll()
+                request.requestMatchers(WHITE_LIST).permitAll()
                         .anyRequest()
                         .authenticated()
         );
