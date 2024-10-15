@@ -1,6 +1,6 @@
 package avg.web.backend.config.security;
 
-import avg.web.backend.dto.response.ApiResponse;
+import avg.web.backend.dto.ApiResponse;
 import avg.web.backend.enums.ErrorCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;

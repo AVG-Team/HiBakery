@@ -1,4 +1,4 @@
-package avg.web.backend.dto.request;
+package avg.web.backend.dto;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductsRequest {
+public class ProductsDTO {
     Long id;
     String title;
     String description;
