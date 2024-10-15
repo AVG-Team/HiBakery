@@ -1,4 +1,4 @@
-package avg.web.backend.dto.response;
+package avg.web.backend.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

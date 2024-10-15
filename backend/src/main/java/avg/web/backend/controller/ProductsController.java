@@ -1,59 +1,58 @@
 package avg.web.backend.controller;
 
-import avg.web.backend.dto.request.ProductsRequest;
-import avg.web.backend.dto.response.ApiResponse;
-import avg.web.backend.dto.response.ProductsResponse;
-import avg.web.backend.service.impl.ProductsService;
+import avg.web.backend.dto.ProductsDTO;
+import avg.web.backend.dto.ApiResponse;
+import avg.web.backend.service.ProductsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor
-public class ProductsController {
+public class ProductsController{
 
     @Autowired
-    private ProductsService productsService;
-
+    ProductsService productsService;
 
     @PostMapping("")
-    public ApiResponse<ProductsResponse> create(ProductsRequest request) {
-        return ApiResponse.<ProductsResponse>builder()
+    public ApiResponse<ProductsDTO> create(ProductsDTO request) {
+        return ApiResponse.<ProductsDTO>builder()
                 .result(productsService.create(request))
                 .code(200)
                 .build();
     }
 
     @PutMapping("/{id}")
-    public ApiResponse<ProductsResponse> update(Long id, ProductsRequest request) {
-        return ApiResponse.<ProductsResponse>builder()
+    public ApiResponse<ProductsDTO> update(@RequestParam("id") Long id, @RequestBody ProductsDTO request) {
+        return ApiResponse.<ProductsDTO>builder()
                 .result(productsService.update(id,request))
                 .code(200)
                 .build();
     }
 
-
     @DeleteMapping("")
-    public ApiResponse<ProductsResponse> delete(ProductsRequest request) {
+    public ApiResponse<ProductsDTO> delete(@RequestBody ProductsDTO request) {
         productsService.delete(request.getId());
-        return ApiResponse.<ProductsResponse>builder()
+        return ApiResponse.<ProductsDTO>builder()
                 .code(200)
                 .build();
     }
 
 
-    @GetMapping("{id}")
-    public ApiResponse<ProductsResponse> get(Long id) {
-        return ApiResponse.<ProductsResponse>builder()
+    @GetMapping("/{id}")
+    public ApiResponse<ProductsDTO> get(@PathVariable("id") Long id) {
+        return ApiResponse.<ProductsDTO>builder()
                 .result(productsService.getByID(id))
                 .code(200)
                 .build();
     }
 
     @GetMapping("")
-    public ApiResponse<ProductsResponse> getAll() {
-        return ApiResponse.<ProductsResponse>builder()
+    public ApiResponse<List<ProductsDTO>> getAll() {
+        return ApiResponse.<List<ProductsDTO>>builder()
                 .result(productsService.getAll())
                 .code(200)
                 .build();

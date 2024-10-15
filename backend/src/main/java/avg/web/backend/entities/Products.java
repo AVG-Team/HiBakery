@@ -1,6 +1,6 @@
 package avg.web.backend.entities;
 
-import avg.web.backend.dto.response.ProductsResponse;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

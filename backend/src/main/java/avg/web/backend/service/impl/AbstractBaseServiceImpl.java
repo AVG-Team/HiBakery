@@ -1,15 +1,3 @@
-package avg.web.backend.service.impl;
-
-import avg.web.backend.mapper.AbstractMapper;
-import avg.web.backend.service.BaseService;
-import lombok.Setter;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
-import java.util.List;
-@Service
-public abstract class AbstractBaseServiceImpl<T, E> implements BaseService<T, E> {
-    @Setter
-    public static Object repository;
 
     @Setter
     public AbstractMapper mapper;
@@ -35,14 +23,14 @@ public abstract class AbstractBaseServiceImpl<T, E> implements BaseService<T, E>
     }
 
     @Override
-    public E getAll() {
+    public List<E> getAll() {
         setRepository();
         List<T> entities = (List<T>) getRepositry().findAll();
-        return (E) entities.stream().map((entity) -> mapper.convertEntityToDTO(entity)).toList();
+        return (List<E>) entities.stream().map((entity) -> mapper.convertEntityToDTO(entity)).toList();
     }
 
     @Override
-    public <ID> E update(ID id ,T DTO) {
+    public E update(T DTO) {
         setRepository();
         Object entity = mapper.convertDTOToEntity(DTO);
         return (E) mapper.convertEntityToDTO(getRepositry().save(entity));

@@ -1,5 +1,6 @@
 package avg.web.backend.service;
 
+import avg.web.backend.dto.ProductsDTO;
 import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
@@ -7,14 +8,13 @@ import java.util.Optional;
 
 /**
  *
- * @param <T> Request of the entity.
- * @param <E> Response of the entity
+ * @param <T> Request of the entity
  */
 
-public interface BaseService<T, E> {
-    E create(T DTO);
-    <ID> E getByID(ID idDTO);
-    E getAll();
-    <ID> E update(ID id,T DTO);
-    <ID> void delete(ID idDTO);
+public interface BaseService<T, ID> {
+    T create(T DTO);
+    T getByID(ID idDTO);
+    List<T> getAll();
+    T update(ID id ,T DTO);
+    void delete(ID idDTO);
 }
