@@ -1,0 +1,114 @@
+entity About {
+    name String required,
+    content String,
+    createdAt Instant,
+    updatedAt Instant
+}
+
+entity SettingSystem {
+    name String required,
+    value String,
+    createdAt Instant,
+    updatedAt Instant
+}
+
+entity PasswordResetTokens {
+    email String required,
+    token String required,
+    createdAt Instant
+}
+
+entity ProductDetail {
+    price BigDecimal,
+    size String,
+    createdAt Instant,
+    updatedAt Instant
+}
+
+entity Products {
+    title String required,
+    description TextBlob,
+    code String,
+    createdAt Instant,
+    updatedAt Instant,
+    deletedAt Instant
+}
+
+entity Images {
+    name String,
+    path String,
+    alt String,
+    createdAt Instant,
+    updatedAt Instant
+}
+
+entity Users {
+    name String required,
+    phone String,
+    account String,
+    birthDay LocalDate,
+    address String,
+    district String,
+    province String,
+    email String required,
+    emailVerify Instant,
+    password String,
+    createdAt Instant,
+    updatedAt Instant,
+    deletedAt Instant
+}
+
+entity Orders {
+    name String required,
+    phone String,
+    province String,
+    district String,
+    address String,
+    ward String,
+    deliveryTime Instant,
+    note TextBlob,
+    content TextBlob,
+    total BigDecimal,
+    code String,
+    status Integer,
+    createdAt Instant,
+    updatedAt Instant,
+    deletedAt Instant
+}
+
+entity OrderDetail {
+    price BigDecimal,
+    quantity Integer,
+    createdAt Instant,
+    updatedAt Instant,
+    deletedAt Instant
+}
+
+entity Discounts {
+    name String required,
+    code String,
+    percent Integer,
+    start Instant,
+    end Instant,
+    active Boolean,
+    createdAt Instant,
+    updatedAt Instant,
+    deletedAt Instant
+}
+
+entity Bills {
+    category Integer,
+    amount BigDecimal,
+    createdAt Instant,
+    updatedAt Instant,
+    deletedAt Instant
+}
+
+entity ProductCategory {
+    name String required,
+    slug String,
+    percent Integer,
+    createdAt Instant,
+    updatedAt Instant,
+    deletedAt Instant
+}

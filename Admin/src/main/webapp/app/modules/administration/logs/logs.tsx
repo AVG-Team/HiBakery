@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Translate } from 'react-jhipster';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { changeLogLevel, getLoggers } from '../administration.reducer';
@@ -27,31 +26,21 @@ export const LogsPage = () => {
   return (
     <div>
       <h2 id="logs-page-heading" data-cy="logsPageHeading">
-        <Translate contentKey="logs.title">Logs</Translate>
+        Logs
       </h2>
-      <p>
-        <Translate contentKey="logs.nbloggers" interpolate={{ total: loggers.length }}>
-          There are {loggers.length.toString()} loggers.
-        </Translate>
-      </p>
+      <p>There are {loggers.length} loggers.</p>
 
-      <span>
-        <Translate contentKey="logs.filter">Filter</Translate>
-      </span>
+      <span>Filter</span>
       <input type="text" value={filter} onChange={changeFilter} className="form-control" disabled={isFetching} />
 
       <table className="table table-sm table-striped table-bordered" aria-describedby="logs-page-heading">
         <thead>
           <tr title="click to order">
             <th>
-              <span>
-                <Translate contentKey="logs.table.name">Name</Translate>
-              </span>
+              <span>Name</span>
             </th>
             <th>
-              <span>
-                <Translate contentKey="logs.table.level">Level</Translate>
-              </span>
+              <span>Level</span>
             </th>
           </tr>
         </thead>

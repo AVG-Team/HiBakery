@@ -1,15 +1,10 @@
 import axios from 'axios';
 import sinon from 'sinon';
 import { configureStore } from '@reduxjs/toolkit';
-import { TranslatorContext } from 'react-jhipster';
 
 import password, { reset, savePassword } from './password.reducer';
 
 describe('Password reducer tests', () => {
-  beforeAll(() => {
-    TranslatorContext.registerTranslations('en', {});
-  });
-
   describe('Common tests', () => {
     it('should return the initial state', () => {
       const toTest = password(undefined, { type: '' });
