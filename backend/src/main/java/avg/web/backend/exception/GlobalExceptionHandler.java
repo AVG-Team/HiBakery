@@ -1,7 +1,7 @@
 package avg.web.backend.exception;
 
 
-import avg.web.backend.dto.response.ApiResponse;
+import avg.web.backend.dto.ApiResponse;
 import avg.web.backend.enums.ErrorCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

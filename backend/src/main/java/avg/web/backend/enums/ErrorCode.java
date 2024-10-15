@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 @Getter
 @AllArgsConstructor
 public enum ErrorCode {
+    INVALID_ID(1, "Invalid id",HttpStatus.BAD_REQUEST),
     UNCATEGORIZED_EXCEPTION(9999, "Uncategorized error",HttpStatus.INTERNAL_SERVER_ERROR),
     INVALID_KEY(100, "Invalid key",HttpStatus.BAD_REQUEST),
     USER_EXISTED(101, "User existed",HttpStatus.BAD_REQUEST),
@@ -33,7 +34,10 @@ public enum ErrorCode {
     CONTACT_NOT_FOUND(122, "Contact not found",HttpStatus.NOT_FOUND),
     USER_PROFILE_NOT_FOUND(123, "User profile not found",HttpStatus.NOT_FOUND),
     TOKEN_EXPIRED(124,"Token expired",HttpStatus.UNAUTHORIZED),
-    UNAUTHORIZED(125,"You don't have permission",HttpStatus.FORBIDDEN),;
+    UNAUTHORIZED(125,"You don't have permission",HttpStatus.FORBIDDEN),
+    NOT_FOUND(126,"Object Not Found",HttpStatus.NOT_FOUND ),
+    INVALID_REQUEST(127,"Invalid Request",HttpStatus.BAD_REQUEST),;
+
 
     private int code ;
     private String message;

@@ -1,0 +1,36 @@
+{
+  "generator-jhipster": {
+    "baseName": "admin",
+    "clientFramework": "react",
+    "clientTestFrameworks": [],
+    "clientTheme": "litera",
+    "clientThemeVariant": "primary",
+    "creationTimestamp": 1728994487077,
+    "devServerPort": 9060,
+    "enableTranslation": false,
+    "entities": [
+      "About",
+      "Bills",
+      "Discounts",
+      "Images",
+      "OrderDetail",
+      "Orders",
+      "PasswordResetTokens",
+      "ProductCategory",
+      "ProductDetail",
+      "Products",
+      "SettingSystem",
+      "Users"
+    ],
+    "jhipsterVersion": "8.7.1",
+    "lastLiquibaseTimestamp": 1728997423000,
+    "microfrontend": null,
+    "microfrontends": [],
+    "monorepository": true,
+    "nativeLanguage": "en",
+    "skipCommitHook": true,
+    "skipServer": true,
+    "testFrameworks": [],
+    "withAdminUi": true
+  }
+}
