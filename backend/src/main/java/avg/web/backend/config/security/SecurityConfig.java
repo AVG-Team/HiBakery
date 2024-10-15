@@ -3,6 +3,7 @@ package avg.web.backend.config.security;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.HttpSecurityDsl;
@@ -23,6 +24,7 @@ import javax.crypto.spec.SecretKeySpec;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@Profile("!dev")
 public class SecurityConfig {
 
     private final String[] WHITE_LIST = {
@@ -33,19 +35,22 @@ public class SecurityConfig {
             "/configuration/security",
             "/swagger-ui.html",
             "/webjars/**",
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+            "/swagger-ui/index.html",
+            "/swagger-ui.html",
+            "/api-docs"
     };
 
-    @Value("jwt.secret.key")
+    @Value("${jwt.secret.key}")
     private String secretKey;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeHttpRequests( request ->
-                request.requestMatchers(HttpMethod.POST,WHITE_LIST).permitAll()
-                        .requestMatchers(HttpMethod.PUT,WHITE_LIST).permitAll()
-                        .anyRequest()
-                        .authenticated()
+        http.authorizeHttpRequests(request ->
+                request.requestMatchers(WHITE_LIST).permitAll()
+                        .anyRequest().authenticated()
         );
 
         http.oauth2ResourceServer(oauth2 ->
