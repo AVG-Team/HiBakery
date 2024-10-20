@@ -36,7 +36,11 @@ public enum ErrorCode {
     TOKEN_EXPIRED(124,"Token expired",HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED(125,"You don't have permission",HttpStatus.FORBIDDEN),
     NOT_FOUND(126,"Object Not Found",HttpStatus.NOT_FOUND ),
-    INVALID_REQUEST(127,"Invalid Request",HttpStatus.BAD_REQUEST),;
+    INVALID_REQUEST(127,"Invalid Request",HttpStatus.BAD_REQUEST),
+    FIELD_INVALID(128,"Invalid Field",HttpStatus.BAD_REQUEST),
+    EMAIL_ALREADY_USED(129,"Email already used",HttpStatus.BAD_REQUEST),
+    INVALID_PASSWORD(130,"Invalid Password",HttpStatus.BAD_REQUEST),
+    AUTHORITY_EXISTS(131,"Authority already exists",HttpStatus.BAD_REQUEST),;
 
 
     private int code ;
