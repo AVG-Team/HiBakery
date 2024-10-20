@@ -27,12 +27,6 @@ public enum ErrorCode {
     USER_NOT_EXISTED(115, "User not exist",HttpStatus.NOT_FOUND),
     USER_NOT_AUTHENTICATED(116, "User not authenticated",HttpStatus.UNAUTHORIZED),
     ROLE_EXISTED(117, "Role existed",HttpStatus.BAD_REQUEST),
-    ADDRESS_EXISTED(118, "Address existed",HttpStatus.BAD_REQUEST),
-    CONTACT_EXISTED(119, "Contact existed",HttpStatus.BAD_REQUEST),
-    USER_PROFILE_EXISTED(120, "User profile existed",HttpStatus.BAD_REQUEST),
-    ADDRESS_NOT_FOUND(121, "Address not found",HttpStatus.NOT_FOUND),
-    CONTACT_NOT_FOUND(122, "Contact not found",HttpStatus.NOT_FOUND),
-    USER_PROFILE_NOT_FOUND(123, "User profile not found",HttpStatus.NOT_FOUND),
     TOKEN_EXPIRED(124,"Token expired",HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED(125,"You don't have permission",HttpStatus.FORBIDDEN),
     NOT_FOUND(126,"Object Not Found",HttpStatus.NOT_FOUND ),
@@ -40,7 +34,8 @@ public enum ErrorCode {
     FIELD_INVALID(128,"Invalid Field",HttpStatus.BAD_REQUEST),
     EMAIL_ALREADY_USED(129,"Email already used",HttpStatus.BAD_REQUEST),
     INVALID_PASSWORD(130,"Invalid Password",HttpStatus.BAD_REQUEST),
-    AUTHORITY_EXISTS(131,"Authority already exists",HttpStatus.BAD_REQUEST),;
+    AUTHORITY_EXISTS(131,"Authority already exists",HttpStatus.BAD_REQUEST),
+    ENTITY_EXISTS(132,"Entity already exists",HttpStatus.BAD_REQUEST),;
 
 
     private int code ;

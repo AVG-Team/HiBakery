@@ -6,13 +6,11 @@ import avg.web.backend.enums.ErrorCode;
 import avg.web.backend.exception.AppException;
 import avg.web.backend.mapper.ProductsMapper;
 import avg.web.backend.repository.ProductsRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
@@ -57,18 +55,20 @@ public class ProductsService implements BaseService<ProductsDTO,Long> {
     }
 
     @Override
-    public ProductsDTO update(Long id, ProductsDTO DTO) {
+    public ProductsDTO update(Long idDTO, ProductsDTO DTO) {
         if(DTO == null || DTO.getId() == null) {
             throw new AppException(ErrorCode.INVALID_REQUEST);
         }
-        if(productsRepository.findById(id).isEmpty()){
+        if(productsRepository.findById(idDTO).isEmpty()){
             throw new AppException(ErrorCode.NOT_FOUND);
         }
         productsRepository.save(productsMapper.toEntity(DTO));
         if(DTO.getId() == null) {
             throw new AppException(ErrorCode.NOT_FOUND);
         }
-        return productsMapper.toDto(productsRepository.findById(id).get());
+        Products productsResponse = productsMapper.toEntity(DTO);
+        productsRepository.save(productsResponse);
+        return productsMapper.toDto(productsResponse) ;
     }
 
     @Override

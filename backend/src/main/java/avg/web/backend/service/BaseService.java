@@ -1,10 +1,6 @@
 package avg.web.backend.service;
 
-import avg.web.backend.dto.ProductsDTO;
-import jakarta.persistence.EntityNotFoundException;
-
 import java.util.List;
-import java.util.Optional;
 
 /**
  *
@@ -15,6 +11,6 @@ public interface BaseService<T, ID> {
     T create(T DTO);
     T getByID(ID idDTO);
     List<T> getAll();
-    T update(ID id ,T DTO);
+    T update(ID idDTO, T DTO);
     void delete(ID idDTO);
 }
