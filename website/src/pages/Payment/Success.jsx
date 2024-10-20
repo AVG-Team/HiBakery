@@ -124,7 +124,7 @@ export default function Shipping ({ nextStep, formData, updateFormData }) {
             </div>
 
             <div className="flex items-center mb-4">
-                <input type="checkbox" id="same-address" className="mr-2" checked={privacyPolicy} onChange={() => setPrivacyPolicy(!privacyPolicy)}/>
+                <input type="checkbox" id="same-address" className="mr-2" onChange={() => setPrivacyPolicy(true)}/>
                 <label htmlFor="same-address" className="text-sm">
                     Accept our purchase and delivery policy
                 </label>

@@ -25,13 +25,19 @@ public class Bills extends BaseEntity {
 
     @NotNull(message = "Category cannot be null")
     @Min(value = 1, message = "Category must be at least 1")
-    Integer category;
+    Integer paymentMethod;
 
     @NotNull(message = "Amount cannot be null")
     @Min(value = 0, message = "Amount must be at least 0")
     Long amount;
 
+    Boolean paymentStatus;
+
     @NotNull(message = "Image ID cannot be null")
     @Min(value = 1, message = "Image ID must be at least 1")
-    Integer imageId;
+    Long imageId;
+
+    @NotBlank(message = "Code cannot be blank")
+    @Size(max = 50, message = "Code must be at most 50 characters")
+    String discountCode;
 }
