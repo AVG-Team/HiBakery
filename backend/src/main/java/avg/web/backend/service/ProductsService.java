@@ -6,6 +6,7 @@ import avg.web.backend.enums.ErrorCode;
 import avg.web.backend.exception.AppException;
 import avg.web.backend.mapper.ProductsMapper;
 import avg.web.backend.repository.ProductsRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +15,13 @@ import java.util.List;
 
 @Service
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
+@RequiredArgsConstructor
 public class ProductsService implements BaseService<ProductsDTO,Long> {
 
-    @Autowired
-    private ProductsRepository productsRepository;
-    @Autowired
-    private ProductsMapper productsMapper;
+
+    private final ProductsRepository productsRepository;
+
+    private final ProductsMapper productsMapper;
 
 
     @Override

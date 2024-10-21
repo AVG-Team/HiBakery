@@ -1,11 +1,13 @@
 package avg.web.backend.service;
 
+import avg.web.backend.dto.DiscountsDTO;
 import avg.web.backend.dto.ProductDetailDTO;
+import avg.web.backend.entities.Discounts;
 import avg.web.backend.entities.ProductDetail;
 import avg.web.backend.enums.ErrorCode;
 import avg.web.backend.exception.AppException;
-import avg.web.backend.mapper.ProductDetailMapper;
-import avg.web.backend.repository.ProductDetailRepository;
+import avg.web.backend.mapper.DiscountsMapper;
+import avg.web.backend.repository.DiscountsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,24 +16,24 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ProductDetailService implements BaseService<ProductDetailDTO, Long> {
+public class DiscountsService implements BaseService<DiscountsDTO,Long> {
 
-    private final ProductDetailRepository repository;
-    private final ProductDetailMapper mapper;
 
+    private final DiscountsRepository repository;
+    private final DiscountsMapper mapper;
 
     @Override
-    public ProductDetailDTO create(ProductDetailDTO DTO) {
+    public DiscountsDTO create(DiscountsDTO DTO) {
         if(repository.existsById(DTO.getId())) {
             throw new AppException(ErrorCode.ENTITY_EXISTS);
         }
-        ProductDetail entity = mapper.toEntity(DTO);
+        Discounts entity = mapper.toEntity(DTO);
         entity = repository.save(entity);
         return mapper.toDto(entity);
     }
 
     @Override
-    public ProductDetailDTO getByID(Long idDTO) {
+    public DiscountsDTO getByID(Long idDTO) {
         if(!repository.existsById(idDTO)) {
             throw new AppException(ErrorCode.NOT_FOUND);
         }
@@ -39,7 +41,7 @@ public class ProductDetailService implements BaseService<ProductDetailDTO, Long>
     }
 
     @Override
-    public List<ProductDetailDTO> getAll() {
+    public List<DiscountsDTO> getAll() {
         if(repository.findAll().isEmpty()) {
             throw new AppException(ErrorCode.NOT_FOUND);
         }
@@ -47,7 +49,7 @@ public class ProductDetailService implements BaseService<ProductDetailDTO, Long>
     }
 
     @Override
-    public ProductDetailDTO update(Long idDTO, ProductDetailDTO DTO) {
+    public DiscountsDTO update(Long idDTO, DiscountsDTO DTO) {
         if(DTO == null || DTO.getId() == null) {
             throw new AppException(ErrorCode.INVALID_REQUEST);
         }
@@ -57,7 +59,7 @@ public class ProductDetailService implements BaseService<ProductDetailDTO, Long>
         if(repository.findById(idDTO).isEmpty()) {
             throw new AppException(ErrorCode.NOT_FOUND);
         }
-        ProductDetail entity = mapper.toEntity(DTO);
+        Discounts entity = mapper.toEntity(DTO);
         entity = repository.save(entity);
         return mapper.toDto(entity);
     }
@@ -70,10 +72,8 @@ public class ProductDetailService implements BaseService<ProductDetailDTO, Long>
         repository.deleteById(idDTO);
     }
 
-    public Optional<ProductDetailDTO> getProductDetailByProductId(Long productId) {
-        if(!repository.existsById(productId)) {
-            throw new AppException(ErrorCode.NOT_FOUND);
-        }
-        return Optional.ofNullable(mapper.toDto(repository.findByProductId(productId).get()));
+
+    public Optional<Discounts> getDiscountByCode(String code) {
+        return repository.findByCode(code.trim().toUpperCase());
     }
 }

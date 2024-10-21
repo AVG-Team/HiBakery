@@ -35,7 +35,8 @@ public enum ErrorCode {
     EMAIL_ALREADY_USED(129,"Email already used",HttpStatus.BAD_REQUEST),
     INVALID_PASSWORD(130,"Invalid Password",HttpStatus.BAD_REQUEST),
     AUTHORITY_EXISTS(131,"Authority already exists",HttpStatus.BAD_REQUEST),
-    ENTITY_EXISTS(132,"Entity already exists",HttpStatus.BAD_REQUEST),;
+    ENTITY_EXISTS(132,"Entity already exists",HttpStatus.BAD_REQUEST),
+    LOGIN_ALREADY_USED(133,"Login already used",HttpStatus.BAD_REQUEST),;
 
 
     private int code ;

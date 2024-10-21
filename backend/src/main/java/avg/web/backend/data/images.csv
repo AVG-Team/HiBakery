@@ -1,0 +1,11 @@
+id,path,created_at,updated_at
+1,/images/chocolate_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
+2,/images/vanilla_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
+3,/images/strawberry_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
+4,/images/black_forest_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
+5,/images/red_velvet_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
+6,/images/lemon_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
+7,/images/coffee_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
+8,/images/carrot_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
+9,/images/banana_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
+10,/images/cheesecake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z

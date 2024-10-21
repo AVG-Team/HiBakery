@@ -1,12 +1,11 @@
 package avg.web.backend.controller;
 
-import avg.web.backend.entities.Images;
 import avg.web.backend.entities.Orders;
-import avg.web.backend.dto.request.OrderBillRequest;
+import avg.web.backend.dto.OrderBillDTO;
 import avg.web.backend.service.ImageService;
 import avg.web.backend.service.OrderService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +16,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
+@RequiredArgsConstructor
 public class OrderController {
 
-    @Autowired
-    private OrderService orderService;
+    private final OrderService orderService;
 
-    @Autowired
-    private ImageService imageService;
+    private final ImageService imageService;
 
 
     @GetMapping
@@ -45,7 +43,7 @@ public class OrderController {
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            OrderBillRequest orderRequest = objectMapper.readValue(orderDataJson, OrderBillRequest.class);
+            OrderBillDTO orderRequest = objectMapper.readValue(orderDataJson, OrderBillDTO.class);
 
             // Xử lý hình ảnh thanh toán
 //            Long imgId = processPaymentImage(imagePayment);

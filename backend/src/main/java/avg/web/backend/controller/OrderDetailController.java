@@ -2,6 +2,7 @@ package avg.web.backend.controller;
 
 import avg.web.backend.entities.OrderDetail;
 import avg.web.backend.service.OrderDetailService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/order-details")
+@RequiredArgsConstructor
 public class OrderDetailController {
 
-    @Autowired
-    private OrderDetailService orderDetailService;
+    private final OrderDetailService orderDetailService;
 
     @GetMapping
     public List<OrderDetail> getAllOrderDetails() {

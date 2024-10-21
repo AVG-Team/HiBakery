@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/product_detail/")
+@RequestMapping("/api/product_detail")
 @RequiredArgsConstructor
 public class ProductDetailController {
     private final ProductDetailService productDetailService;
@@ -25,7 +25,7 @@ public class ProductDetailController {
     }
 
     @PutMapping("/{id}")
-    public ApiResponse<ProductDetailDTO> update(@RequestParam("id") Long id, @RequestBody ProductDetailDTO request) {
+    public ApiResponse<ProductDetailDTO> update(@RequestParam Long id, @RequestBody ProductDetailDTO request) {
         return ApiResponse.<ProductDetailDTO>builder()
                 .result(productDetailService.update(id,request))
                 .code(200)
@@ -33,8 +33,8 @@ public class ProductDetailController {
     }
 
     @DeleteMapping("")
-    public ApiResponse<ProductDetailDTO> delete(@RequestBody ProductDetailDTO request) {
-        productDetailService.delete(request.getId());
+    public ApiResponse<ProductDetailDTO> delete(@RequestParam Long id) {
+        productDetailService.delete(id);
         return ApiResponse.<ProductDetailDTO>builder()
                 .code(200)
                 .build();

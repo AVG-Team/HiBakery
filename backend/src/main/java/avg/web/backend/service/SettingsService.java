@@ -1,37 +1,38 @@
 package avg.web.backend.service;
 
-import avg.web.backend.dto.ProductDetailDTO;
+import avg.web.backend.dto.SettingsDTO;
 import avg.web.backend.entities.ProductDetail;
+import avg.web.backend.entities.Products;
+import avg.web.backend.entities.Settings;
 import avg.web.backend.enums.ErrorCode;
 import avg.web.backend.exception.AppException;
-import avg.web.backend.mapper.ProductDetailMapper;
-import avg.web.backend.repository.ProductDetailRepository;
+import avg.web.backend.mapper.SettingsMapper;
+import avg.web.backend.repository.SettingsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ProductDetailService implements BaseService<ProductDetailDTO, Long> {
+public class SettingsService implements BaseService<SettingsDTO,Long> {
 
-    private final ProductDetailRepository repository;
-    private final ProductDetailMapper mapper;
-
+    private final SettingsRepository repository;
+    private final SettingsMapper mapper;
 
     @Override
-    public ProductDetailDTO create(ProductDetailDTO DTO) {
-        if(repository.existsById(DTO.getId())) {
-            throw new AppException(ErrorCode.ENTITY_EXISTS);
+    public SettingsDTO create(SettingsDTO DTO) {
+        if(DTO == null || DTO.getId() == null) {
+            throw new AppException(ErrorCode.INVALID_REQUEST);
         }
-        ProductDetail entity = mapper.toEntity(DTO);
-        entity = repository.save(entity);
-        return mapper.toDto(entity);
+        Settings settings = mapper.toEntity(DTO);
+        settings = repository.save(settings);
+
+        return mapper.toDto(settings);
     }
 
     @Override
-    public ProductDetailDTO getByID(Long idDTO) {
+    public SettingsDTO getByID(Long idDTO) {
         if(!repository.existsById(idDTO)) {
             throw new AppException(ErrorCode.NOT_FOUND);
         }
@@ -39,7 +40,7 @@ public class ProductDetailService implements BaseService<ProductDetailDTO, Long>
     }
 
     @Override
-    public List<ProductDetailDTO> getAll() {
+    public List<SettingsDTO> getAll() {
         if(repository.findAll().isEmpty()) {
             throw new AppException(ErrorCode.NOT_FOUND);
         }
@@ -47,7 +48,7 @@ public class ProductDetailService implements BaseService<ProductDetailDTO, Long>
     }
 
     @Override
-    public ProductDetailDTO update(Long idDTO, ProductDetailDTO DTO) {
+    public SettingsDTO update(Long idDTO, SettingsDTO DTO) {
         if(DTO == null || DTO.getId() == null) {
             throw new AppException(ErrorCode.INVALID_REQUEST);
         }
@@ -57,7 +58,7 @@ public class ProductDetailService implements BaseService<ProductDetailDTO, Long>
         if(repository.findById(idDTO).isEmpty()) {
             throw new AppException(ErrorCode.NOT_FOUND);
         }
-        ProductDetail entity = mapper.toEntity(DTO);
+        Settings entity = mapper.toEntity(DTO);
         entity = repository.save(entity);
         return mapper.toDto(entity);
     }
@@ -68,12 +69,5 @@ public class ProductDetailService implements BaseService<ProductDetailDTO, Long>
             throw new AppException(ErrorCode.NOT_FOUND);
         }
         repository.deleteById(idDTO);
-    }
-
-    public Optional<ProductDetailDTO> getProductDetailByProductId(Long productId) {
-        if(!repository.existsById(productId)) {
-            throw new AppException(ErrorCode.NOT_FOUND);
-        }
-        return Optional.ofNullable(mapper.toDto(repository.findByProductId(productId).get()));
     }
 }

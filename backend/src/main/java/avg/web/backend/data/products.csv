@@ -1,0 +1,11 @@
+id,name,description,price,stock,category_id,created_at,updated_at
+1,Chocolate Cake,Delicious chocolate cake,150000,10,C001,2024-10-10T12:00:00Z,2024-10-15T12:00:00Z
+2,Vanilla Cake,Sweet vanilla cake,140000,20,C002,2024-10-10T12:00:00Z,2024-10-15T12:00:00Z
+3,Strawberry Cake,Fresh strawberry cake,160000,15,C003,2024-10-10T12:00:00Z,2024-10-15T12:00:00Z
+4,Black Forest Cake,Delicious black forest cake,170000,5,C001,2024-10-10T12:00:00Z,2024-10-15T12:00:00Z
+5,Red Velvet Cake,Classic red velvet cake,180000,7,C002,2024-10-10T12:00:00Z,2024-10-15T12:00:00Z
+6,Lemon Cake,Fresh lemon cake,120000,8,C003,2024-10-10T12:00:00Z,2024-10-15T12:00:00Z
+7,Coffee Cake,Rich coffee-flavored cake,190000,6,C001,2024-10-10T12:00:00Z,2024-10-15T12:00:00Z
+8,Carrot Cake,Moist carrot cake with cream cheese frosting,160000,12,C002,2024-10-10T12:00:00Z,2024-10-15T12:00:00Z
+9,Banana Cake,Soft and sweet banana cake,130000,11,C003,2024-10-10T12:00:00Z,2024-10-15T12:00:00Z
+10,Cheesecake,Rich and creamy cheesecake,200000,9,C001,2024-10-10T12:00:00Z,2024-10-15T12:00:00Z

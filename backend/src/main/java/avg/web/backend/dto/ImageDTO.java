@@ -1,5 +1,7 @@
 package avg.web.backend.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -10,10 +12,9 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ProductsDTO {
+public class ImageDTO {
     Long id;
-    String title;
-    String description;
-    String code;
-    Long categoryId;
+    String name;
+    String path;
+    String alt;
 }

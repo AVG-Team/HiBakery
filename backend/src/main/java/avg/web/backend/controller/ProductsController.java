@@ -33,9 +33,9 @@ public class ProductsController{
                 .build();
     }
 
-    @DeleteMapping("")
-    public ApiResponse<ProductsDTO> delete(@RequestBody ProductsDTO request) {
-        productsService.delete(request.getId());
+    @DeleteMapping("/{id}")
+    public ApiResponse<ProductsDTO> delete(@RequestParam("id") Long id) {
+        productsService.delete(id);
         return ApiResponse.<ProductsDTO>builder()
                 .code(200)
                 .build();
