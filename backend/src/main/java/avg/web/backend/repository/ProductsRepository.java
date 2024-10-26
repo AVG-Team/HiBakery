@@ -15,4 +15,23 @@ public interface ProductsRepository extends JpaRepository<Products, Long> {
     @Query("SELECT p FROM Products p ORDER BY p.id ASC ")
     List<Products> getProductsTopK(@Param("k") int k, Pageable pageable);
 
+    @Query("SELECT p " +
+            "FROM Products  p " +
+            "WHERE ( :categoryId IS NULL or p.categoryId = :categoryId) ")
+    List<Products> getProductsByCategoryId(@Param("categoryId") Long categoryId);
+
+    @Query("SELECT p " +
+            "FROM Products p " +
+            "JOIN ProductDetail  pd on p.id = pd.productId " +
+            "ORDER BY pd.price ASC ")
+    List<Products> sortProductsByPriceAsc();
+
+
+    @Query("SELECT p " +
+            "FROM Products p " +
+            "JOIN ProductDetail  pd on p.id = pd.productId " +
+            "ORDER BY pd.price DESC ")
+    List<Products> sortProductsByPriceDesc();
+
+
 }

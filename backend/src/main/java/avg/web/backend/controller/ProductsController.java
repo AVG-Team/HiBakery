@@ -73,4 +73,28 @@ public class ProductsController{
                 .code(200)
                 .build();
     }
+
+    @GetMapping("/category")
+    public ApiResponse<List<ProductsDTO>> getAllCategories(@RequestParam(value = "id", required = false) Long id) {
+        return ApiResponse.<List<ProductsDTO>>builder()
+                .result(productsService.getProductsByCategoryId(id))
+                .code(200)
+                .build();
+    }
+
+    @GetMapping("/sort/priceAsc")
+    public ApiResponse<List<ProductsDTO>> sortProductsByPriceAsc() {
+        return ApiResponse.<List<ProductsDTO>>builder()
+                .result(productsService.sortProductsByPriceAsc())
+                .code(200)
+                .build();
+    }
+
+    @GetMapping("/sort/priceDesc")
+    public ApiResponse<List<ProductsDTO>> sortProductsByPriceDesc() {
+        return ApiResponse.<List<ProductsDTO>>builder()
+                .result(productsService.sortProductsByPriceDesc())
+                .code(200)
+                .build();
+    }
 }

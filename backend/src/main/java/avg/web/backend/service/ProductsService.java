@@ -100,4 +100,33 @@ public class ProductsService implements BaseService<ProductsDTO,Long> {
         List<Products> productsResponse = productsRepository.getProductsTopK(topK, PageRequest.of(0,topK));
         return productsMapper.toDto(productsResponse);
     }
+
+    public List<ProductsDTO> getProductsByCategoryId(Long categoryId){
+        if(productsRepository.findAll().isEmpty()){
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+        List<Products> productsResponse;
+        if(categoryId == null) {
+            productsResponse = productsRepository.findAll();
+        }
+        productsResponse = productsRepository.getProductsByCategoryId(categoryId);
+        return productsMapper.toDto(productsResponse);
+    }
+
+    public List<ProductsDTO> sortProductsByPriceAsc(){
+        if(productsRepository.findAll().isEmpty()){
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+        List<Products> productsResponse = productsRepository.sortProductsByPriceAsc();
+
+        return productsMapper.toDto(productsResponse);
+    }
+
+    public List<ProductsDTO> sortProductsByPriceDesc(){
+        if(productsRepository.findAll().isEmpty()){
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+        List<Products> productsResponse = productsRepository.sortProductsByPriceDesc();
+        return productsMapper.toDto(productsResponse);
+    }
 }

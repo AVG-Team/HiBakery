@@ -34,6 +34,19 @@ const productApi = {
         const url = `/products/populars/${top}`;
         return axiosClient.get(url);
     },
+    getByCategory(categoryId) {
+        const url = categoryId ? `/products/category?id=${categoryId}` : "/products/category"; // Use categoryId in the URL if it exists
+        console.log("Category ID:", categoryId);
+        return axiosClient.get(url);
+    },
+    sortProductsByPriceAsc() {
+        const url = `/products/sort/priceAsc`;
+        return axiosClient.get(url);
+    },
+    sortProductsByPriceDesc() {
+        const url = `/products/sort/priceDesc`;
+        return axiosClient.get(url);
+    },
 };
 
 export default productApi;
