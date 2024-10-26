@@ -1,4 +1,10 @@
-id,name,description,created_at,updated_at
-1,Chocolate Cakes,All types of chocolate cakes,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
-2,Vanilla Cakes,All types of vanilla cakes,2024-01-02T12:00:00Z,2024-01-11T12:00:00Z
-3,Fruit Cakes,All types of fruit cakes,2024-01-03T12:00:00Z,2024-01-12T12:00:00Z
+id,name,slug,parentId
+1,Bánh sinh nhật,sinh-nhat,null
+2,Bánh cưới,cuoi,null
+3,Bánh sự kiện,su-kien,null
+4,Bánh truyền thống,truyen-thong,null
+5,Bánh kem socola,socola,1
+6,Bánh kem trái cây,trai-cay,1
+7,Bánh kem phô mai,pho-mai,1
+8,Bánh cưới lãng mạn,lang-man,2
+9,Bánh cưới hiện đại,hien-dai,2

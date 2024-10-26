@@ -9,8 +9,10 @@ import avg.web.backend.repository.ProductsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -81,5 +83,21 @@ public class ProductsService implements BaseService<ProductsDTO,Long> {
         if(productsRepository.findById(idDTO).isEmpty()){
             throw new AppException(ErrorCode.NOT_FOUND);
         }productsRepository.deleteById(idDTO);
+    }
+
+    public List<ProductsDTO> getProductSales(){
+        if(productsRepository.findAll().isEmpty()){
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+        List<Products> productsResponse = productsRepository.getProductsTopK(4, PageRequest.of(0,4));
+        return productsMapper.toDto(productsResponse);
+    }
+
+    public List<ProductsDTO> getProductsPopular(Integer topK){
+        if(productsRepository.findAll().isEmpty()){
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+        List<Products> productsResponse = productsRepository.getProductsTopK(topK, PageRequest.of(0,topK));
+        return productsMapper.toDto(productsResponse);
     }
 }

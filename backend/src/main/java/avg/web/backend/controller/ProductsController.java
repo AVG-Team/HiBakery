@@ -14,8 +14,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductsController{
 
-    @Autowired
-    ProductsService productsService;
+
+    private final ProductsService productsService;
 
     @PostMapping("")
     public ApiResponse<ProductsDTO> create(ProductsDTO request) {
@@ -54,6 +54,22 @@ public class ProductsController{
     public ApiResponse<List<ProductsDTO>> getAll() {
         return ApiResponse.<List<ProductsDTO>>builder()
                 .result(productsService.getAll())
+                .code(200)
+                .build();
+    }
+
+    @GetMapping("/sales")
+    public ApiResponse<List<ProductsDTO>> getAllSales() {
+        return ApiResponse.<List<ProductsDTO>>builder()
+                .result(productsService.getProductSales())
+                .code(200)
+                .build();
+    }
+
+    @GetMapping("/populars/{top}")
+    public ApiResponse<List<ProductsDTO>> getAllPopulars(@PathVariable("top") Integer top) {
+        return ApiResponse.<List<ProductsDTO>>builder()
+                .result(productsService.getProductsPopular(top))
                 .code(200)
                 .build();
     }

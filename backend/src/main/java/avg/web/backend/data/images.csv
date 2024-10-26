@@ -1,11 +1,51 @@
-id,path,created_at,updated_at
-1,/images/chocolate_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
-2,/images/vanilla_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
-3,/images/strawberry_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
-4,/images/black_forest_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
-5,/images/red_velvet_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
-6,/images/lemon_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
-7,/images/coffee_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
-8,/images/carrot_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
-9,/images/banana_cake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
-10,/images/cheesecake.jpg,2024-01-01T12:00:00Z,2024-01-10T12:00:00Z
+id,name,path,alt
+1,Image of Bánh kem socola sữa,images/image_test.jpg,Bánh socola ngọt ngào với lớp kem sữa
+2,Image of Bánh kem socola đậm vị,images/image_test.jpg,Bánh kem socola đậm đà cho người yêu thích vị đắng
+3,Image of Bánh kem socola hạnh nhân,images/image_test.jpg,Bánh socola kết hợp hạt hạnh nhân thơm ngon
+4,Image of Bánh kem socola trắng,images/image_test.jpg,Bánh kem socola trắng tinh tế
+5,Image of Bánh kem socola phủ dâu,images/image_test.jpg,Bánh socola trang trí dâu tươi
+6,Image of Bánh kem socola phủ chuối,images/image_test.jpg,Bánh socola kết hợp chuối ngọt ngào
+7,Image of Bánh kem trái cây nhiệt đới,images/image_test.jpg,Bánh kem với các loại trái cây nhiệt đới tươi mát
+8,Image of Bánh kem dâu và kiwi,images/image_test.jpg,Bánh kem kết hợp vị dâu ngọt và kiwi chua nhẹ
+9,Image of Bánh kem xoài và chanh dây,images/image_test.jpg,Bánh kem hương vị xoài và chanh dây
+10,Image of Bánh kem việt quất và mâm xôi,images/image_test.jpg,Bánh kem trái cây việt quất và mâm xôi
+11,Image of Bánh kem nho và táo,images/image_test.jpg,Bánh kem tươi mát với nho và táo
+12,Image of Bánh kem dưa hấu,images/image_test.jpg,Bánh kem vị dưa hấu ngọt lành
+13,Image of Bánh kem phô mai Nhật,images/image_test.jpg,Bánh phô mai mềm mịn theo phong cách Nhật
+14,Image of Bánh phô mai New York,images/image_test.jpg,Bánh phô mai nướng đặc trưng phong cách New York
+15,Image of Bánh kem phô mai socola,images/image_test.jpg,Bánh phô mai kết hợp socola
+16,Image of Bánh kem phô mai dâu tây,images/image_test.jpg,Bánh phô mai kết hợp dâu tây
+17,Image of Bánh kem phô mai caramel,images/image_test.jpg,Bánh phô mai phủ caramel đậm đà
+18,Image of Bánh kem phô mai xoài,images/image_test.jpg,Bánh phô mai vị xoài tươi ngọt
+19,Image of Bánh sinh nhật hoạt hình,images/image_test.jpg,Bánh sinh nhật trang trí với hình ảnh hoạt hình
+20,Image of Bánh sinh nhật nhân vật,images/image_test.jpg,Bánh sinh nhật với hình ảnh nhân vật yêu thích
+21,Image of Bánh sinh nhật hoa tươi,images/image_test.jpg,Bánh sinh nhật trang trí hoa tươi
+22,Image of Bánh sinh nhật thiên thần,images/image_test.jpg,Bánh sinh nhật với trang trí thiên thần ngọt ngào
+23,Image of Bánh sinh nhật chủ đề biển,images/image_test.jpg,Bánh sinh nhật phong cách biển
+24,Image of Bánh sinh nhật chủ đề rừng,images/image_test.jpg,Bánh sinh nhật với hình ảnh thiên nhiên
+25,Image of Bánh sinh nhật trái tim,images/image_test.jpg,Bánh sinh nhật hình trái tim
+26,Image of Bánh sinh nhật tròn,images/image_test.jpg,Bánh sinh nhật kiểu dáng tròn truyền thống
+27,Image of Bánh sinh nhật vuông,images/image_test.jpg,Bánh sinh nhật với kiểu dáng vuông vức
+28,Image of Bánh cưới lãng mạn cổ điển,images/image_test.jpg,Bánh cưới phong cách lãng mạn
+29,Image of Bánh cưới hoa hồng trắng,images/image_test.jpg,Bánh cưới trang trí hoa hồng trắng
+30,Image of Bánh cưới pha lê,images/image_test.jpg,Bánh cưới trang trí pha lê sang trọng
+31,Image of Bánh cưới ren,images/image_test.jpg,Bánh cưới trang trí họa tiết ren
+32,Image of Bánh cưới phong cách Boho,images/image_test.jpg,Bánh cưới phong cách Boho tự nhiên
+33,Image of Bánh cưới lãng mạn đỏ thắm,images/image_test.jpg,Bánh cưới lãng mạn với màu đỏ chủ đạo
+34,Image of Bánh cưới hiện đại tối giản,images/image_test.jpg,Bánh cưới phong cách tối giản
+35,Image of Bánh cưới hoa tươi,images/image_test.jpg,Bánh cưới hiện đại với hoa tươi trang trí
+36,Image of Bánh cưới kính cường lực,images/image_test.jpg,Bánh cưới với kính cường lực trong suốt
+37,Image of Bánh cưới tráng men,images/image_test.jpg,Bánh cưới trang trí tráng men lấp lánh
+38,Image of Bánh cưới hồng pastel,images/image_test.jpg,Bánh cưới hồng pastel nhẹ nhàng
+39,Image of Bánh cưới vàng ánh kim,images/image_test.jpg,Bánh cưới vàng ánh kim sang trọng
+40,Image of Bánh sự kiện doanh nghiệp,images/image_test.jpg,Bánh sự kiện trang trí logo doanh nghiệp
+41,Image of Bánh sự kiện khai trương,images/image_test.jpg,Bánh mừng khai trương trang trí sang trọng
+42,Image of Bánh sự kiện sinh nhật công ty,images/image_test.jpg,Bánh sinh nhật dành cho công ty
+43,Image of Bánh sự kiện cuối năm,images/image_test.jpg,Bánh sự kiện mừng cuối năm
+58,Image of Bánh sinh nhật tuổi teen,images/image_test.jpg,Bánh sinh nhật năng động cho tuổi teen
+59,Image of Bánh cưới phong cách châu Âu,images/image_test.jpg,Bánh cưới phong cách cổ điển châu Âu
+60,Image of Bánh sinh nhật gấu bông,images/image_test.jpg,Bánh sinh nhật hình gấu bông
+61,Image of Bánh sinh nhật hoa vàng,images/image_test.jpg,Bánh sinh nhật trang trí hoa vàng
+62,Image of Bánh sinh nhật lâu đài,images/image_test.jpg,Bánh sinh nhật trang trí lâu đài cổ tích
+63,Image of Bánh cưới ánh bạc,images/image_test.jpg,Bánh cưới ánh bạc lấp lánh
+64,Image of Bánh cưới ánh đồng,images/image_test.jpg,Bánh cưới trang trí ánh đồng cổ điển
