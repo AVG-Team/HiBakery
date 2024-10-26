@@ -1,31 +1,34 @@
-import Breadcrumb from './Breadcrumb';
-import ProductImage from './ProductImage';
-import ProductInfo from './ProductInfo';
-import ProductDescription from './ProductDescription';
-import RelatedProducts from './RelatedProducts';
+import Breadcrumb from "./Breadcrumb";
+import ProductImage from "./ProductImage";
+import ProductInfo from "./ProductInfo";
+import ProductDescription from "./ProductDescription";
+import RelatedProducts from "./RelatedProducts";
 import PropTypes from "prop-types";
-import data_fake from "../../../mocks/FakeDataProduct.json";
 
 ProductDetail.propTypes = {
-    id: PropTypes.number,
+    product: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        categoryId: PropTypes.string.isRequired,
+        imagePath: PropTypes.string.isRequired,
+    }).isRequired,
 };
 
-function ProductDetail({id}) {
-    const product = data_fake.products.find(product => product.id === id);
-
+function ProductDetail({ product }) {
     return (
-        <main className="container px-40 3xl:px-0 flex flex-col mt-6 w-full justify-center">
+        <main className="container flex flex-col justify-center w-full px-40 mt-6 3xl:px-0">
             <Breadcrumb />
             <div className="flex flex-wrap gap-10 mt-10">
-                <div className="flex flex-col grow shrink-0 my-auto basis-0 w-fit">
-                    <div className="self-center ml-6 w-10/12">
+                <div className="flex flex-col my-auto grow shrink-0 basis-0 w-fit">
+                    <div className="self-center w-10/12 ml-6">
                         <div className="flex gap-5 px-10">
-                            <ProductImage />
-                            <ProductInfo product={product}/>
+                            <ProductImage product={product} />
+                            <ProductInfo product={product} />
                         </div>
                     </div>
-                    <ProductDescription product={product}/>
-                    <RelatedProducts />
+                    {/* <ProductDescription product={product} /> */}
+                    <RelatedProducts categoryId={product.categoryId} />
                 </div>
             </div>
         </main>

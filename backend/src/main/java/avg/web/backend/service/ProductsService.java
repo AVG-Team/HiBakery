@@ -9,19 +9,21 @@ import avg.web.backend.repository.ProductsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
+@RequiredArgsConstructor
 public class ProductsService implements BaseService<ProductsDTO,Long> {
 
-    @Autowired
-    private ProductsRepository productsRepository;
-    @Autowired
-    private ProductsMapper productsMapper;
+
+    private final ProductsRepository productsRepository;
+
+    private final ProductsMapper productsMapper;
 
 
     @Override
@@ -57,18 +59,20 @@ public class ProductsService implements BaseService<ProductsDTO,Long> {
     }
 
     @Override
-    public ProductsDTO update(Long id, ProductsDTO DTO) {
+    public ProductsDTO update(Long idDTO, ProductsDTO DTO) {
         if(DTO == null || DTO.getId() == null) {
             throw new AppException(ErrorCode.INVALID_REQUEST);
         }
-        if(productsRepository.findById(id).isEmpty()){
+        if(productsRepository.findById(idDTO).isEmpty()){
             throw new AppException(ErrorCode.NOT_FOUND);
         }
         productsRepository.save(productsMapper.toEntity(DTO));
         if(DTO.getId() == null) {
             throw new AppException(ErrorCode.NOT_FOUND);
         }
-        return productsMapper.toDto(productsRepository.findById(id).get());
+        Products productsResponse = productsMapper.toEntity(DTO);
+        productsRepository.save(productsResponse);
+        return productsMapper.toDto(productsResponse) ;
     }
 
     @Override
@@ -79,5 +83,50 @@ public class ProductsService implements BaseService<ProductsDTO,Long> {
         if(productsRepository.findById(idDTO).isEmpty()){
             throw new AppException(ErrorCode.NOT_FOUND);
         }productsRepository.deleteById(idDTO);
+    }
+
+    public List<ProductsDTO> getProductSales(){
+        if(productsRepository.findAll().isEmpty()){
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+        List<Products> productsResponse = productsRepository.getProductsTopK(4, PageRequest.of(0,4));
+        return productsMapper.toDto(productsResponse);
+    }
+
+    public List<ProductsDTO> getProductsPopular(Integer topK){
+        if(productsRepository.findAll().isEmpty()){
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+        List<Products> productsResponse = productsRepository.getProductsTopK(topK, PageRequest.of(0,topK));
+        return productsMapper.toDto(productsResponse);
+    }
+
+    public List<ProductsDTO> getProductsByCategoryId(Long categoryId){
+        if(productsRepository.findAll().isEmpty()){
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+        List<Products> productsResponse;
+        if(categoryId == null) {
+            productsResponse = productsRepository.findAll();
+        }
+        productsResponse = productsRepository.getProductsByCategoryId(categoryId);
+        return productsMapper.toDto(productsResponse);
+    }
+
+    public List<ProductsDTO> sortProductsByPriceAsc(){
+        if(productsRepository.findAll().isEmpty()){
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+        List<Products> productsResponse = productsRepository.sortProductsByPriceAsc();
+
+        return productsMapper.toDto(productsResponse);
+    }
+
+    public List<ProductsDTO> sortProductsByPriceDesc(){
+        if(productsRepository.findAll().isEmpty()){
+            throw new AppException(ErrorCode.NOT_FOUND);
+        }
+        List<Products> productsResponse = productsRepository.sortProductsByPriceDesc();
+        return productsMapper.toDto(productsResponse);
     }
 }

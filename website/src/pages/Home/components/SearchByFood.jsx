@@ -6,8 +6,10 @@ import { useState } from "react";
 const Item = ({ image, title }) => {
     return (
         <div className="flex flex-col items-center justify-center w-48">
-            <img className="object-cover w-48 h-48 rounded-full" src={image} alt={title} />
-            <p className="mt-2 text-lg font-bold">{title}</p>
+            <div className="flex items-center justify-center w-48 h-48 bg-white rounded-full">
+                <img className="object-cover w-40 h-40 rounded-full" src={image} alt={title} />
+            </div>
+            <p className="mt-2 text-lg font-bold text-center h-14 line-clamp-2 hover:line-clamp-none">{title}</p>
         </div>
     );
 };
@@ -35,7 +37,7 @@ const Carousel = ({ items }) => {
         <div className="container relative w-full mx-auto">
             <div className="flex flex-row items-center justify-center w-full gap-4 py-10 overflow-hidden rounded-lg">
                 {visibleItems.map((item, index) => (
-                    <Item key={index} image={item.image} title={item.title} price={item.price} />
+                    <Item key={index} image={item.imagePath} title={item.title} price={item.price} />
                 ))}
             </div>
             <p className="absolute top-0 w-20 h-10 p-2 text-lg transition-all transform -translate-y-1/2 right-36 hover:bg-opacity-75 text-Light-Apricot-600 hover:text-Light-Apricot-300">
@@ -78,25 +80,25 @@ Carousel.propTypes = {
     ).isRequired,
 };
 
-export default function SearchByFood() {
-    const items = [
-        { image: "https://via.placeholder.com/150", title: "Cupcake 1", price: "500VND" },
-        { image: "https://via.placeholder.com/150", title: "Cupcake 2", price: "600VND" },
-        { image: "https://via.placeholder.com/150", title: "Cupcake 3", price: "700VND" },
-        { image: "https://via.placeholder.com/150", title: "Cupcake 4", price: "550VND" },
-        { image: "https://via.placeholder.com/150", title: "Cupcake 5", price: "650VND" },
-        { image: "https://via.placeholder.com/150", title: "Cupcake 6", price: "750VND" },
-        { image: "https://via.placeholder.com/150", title: "Cupcake 7", price: "800VND" },
-    ];
-
+export default function SearchByFood({ products }) {
     return (
         <div className="w-full py-20  bg-Light-Apricot-500/[20%]">
             <div className="flex justify-start p-4 mb-5">
                 <p className="text-3xl font-bold text-Coral-Pink-500">Search By Food</p>
             </div>
             <div className="flex flex-col items-center justify-center">
-                <Carousel items={items} />
+                <Carousel items={products} />
             </div>
         </div>
     );
 }
+
+SearchByFood.propTypes = {
+    products: PropTypes.arrayOf(
+        PropTypes.shape({
+            image: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+            price: PropTypes.string.isRequired,
+        }),
+    ).isRequired,
+};

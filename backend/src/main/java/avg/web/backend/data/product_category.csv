@@ -1,0 +1,10 @@
+id,name,slug,parentId
+1,Bánh sinh nhật,sinh-nhat,null
+2,Bánh cưới,cuoi,null
+3,Bánh sự kiện,su-kien,null
+4,Bánh truyền thống,truyen-thong,null
+5,Bánh kem socola,socola,1
+6,Bánh kem trái cây,trai-cay,1
+7,Bánh kem phô mai,pho-mai,1
+8,Bánh cưới lãng mạn,lang-man,2
+9,Bánh cưới hiện đại,hien-dai,2

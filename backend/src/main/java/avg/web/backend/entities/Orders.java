@@ -26,7 +26,7 @@ public class Orders extends BaseEntity {
     String id;
 
     @NotBlank(message = "User ID cannot be blank")
-    String userId;
+    Long userId;
 
     @NotBlank(message = "Name cannot be blank")
     @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")

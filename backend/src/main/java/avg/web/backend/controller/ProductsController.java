@@ -14,8 +14,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductsController{
 
-    @Autowired
-    ProductsService productsService;
+
+    private final ProductsService productsService;
 
     @PostMapping("")
     public ApiResponse<ProductsDTO> create(ProductsDTO request) {
@@ -33,9 +33,9 @@ public class ProductsController{
                 .build();
     }
 
-    @DeleteMapping("")
-    public ApiResponse<ProductsDTO> delete(@RequestBody ProductsDTO request) {
-        productsService.delete(request.getId());
+    @DeleteMapping("/{id}")
+    public ApiResponse<ProductsDTO> delete(@RequestParam("id") Long id) {
+        productsService.delete(id);
         return ApiResponse.<ProductsDTO>builder()
                 .code(200)
                 .build();
@@ -54,6 +54,46 @@ public class ProductsController{
     public ApiResponse<List<ProductsDTO>> getAll() {
         return ApiResponse.<List<ProductsDTO>>builder()
                 .result(productsService.getAll())
+                .code(200)
+                .build();
+    }
+
+    @GetMapping("/sales")
+    public ApiResponse<List<ProductsDTO>> getAllSales() {
+        return ApiResponse.<List<ProductsDTO>>builder()
+                .result(productsService.getProductSales())
+                .code(200)
+                .build();
+    }
+
+    @GetMapping("/populars/{top}")
+    public ApiResponse<List<ProductsDTO>> getAllPopulars(@PathVariable("top") Integer top) {
+        return ApiResponse.<List<ProductsDTO>>builder()
+                .result(productsService.getProductsPopular(top))
+                .code(200)
+                .build();
+    }
+
+    @GetMapping("/category")
+    public ApiResponse<List<ProductsDTO>> getAllCategories(@RequestParam(value = "id", required = false) Long id) {
+        return ApiResponse.<List<ProductsDTO>>builder()
+                .result(productsService.getProductsByCategoryId(id))
+                .code(200)
+                .build();
+    }
+
+    @GetMapping("/sort/priceAsc")
+    public ApiResponse<List<ProductsDTO>> sortProductsByPriceAsc() {
+        return ApiResponse.<List<ProductsDTO>>builder()
+                .result(productsService.sortProductsByPriceAsc())
+                .code(200)
+                .build();
+    }
+
+    @GetMapping("/sort/priceDesc")
+    public ApiResponse<List<ProductsDTO>> sortProductsByPriceDesc() {
+        return ApiResponse.<List<ProductsDTO>>builder()
+                .result(productsService.sortProductsByPriceDesc())
                 .code(200)
                 .build();
     }

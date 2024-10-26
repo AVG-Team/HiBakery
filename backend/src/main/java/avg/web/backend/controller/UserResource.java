@@ -1,14 +1,16 @@
 package avg.web.backend.controller;
 
 import avg.web.backend.constant.AuthoritiesConstants;
+import avg.web.backend.constant.Constants;
 import avg.web.backend.dto.AdminUserDTO;
 import avg.web.backend.entities.User;
+import avg.web.backend.enums.ErrorCode;
+import avg.web.backend.exception.AppException;
 import avg.web.backend.repository.UserRepository;
 import avg.web.backend.service.MailService;
 import avg.web.backend.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import jdk.jshell.spi.ExecutionControl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +37,7 @@ import java.util.Optional;
 /**
  * REST controller for managing users.
  * <p>
- * This class accesses the {@link com.mycompany.myapp.domain.User} entity, and needs to fetch its collection of authorities.
+ * This class accesses the {@link avg.web.backend.entities.User} entity, and needs to fetch its collection of authorities.
  * <p>
  * For a normal use-case, it would be better to have an eager relationship between User and Authority,
  * and send everything to the client side: there would be no View Model and DTO, a lot less code, and an outer-join
@@ -105,16 +107,16 @@ public class UserResource {
      */
     @PostMapping("/users")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
-    public ResponseEntity<User> createUser(@Valid @RequestBody AdminUserDTO userDTO) throws ExecutionControl.UserException, InternalException, URISyntaxException {
+    public ResponseEntity<User> createUser(@Valid @RequestBody AdminUserDTO userDTO) throws AppException, URISyntaxException {
         LOG.debug("REST request to save User : {}", userDTO);
 
         if (userDTO.getId() != null) {
-            throw new UserException(ErrorCode.USER_EXIST, "A new user cannot already have an ID");
+            throw new AppException(ErrorCode.USER_EXISTED);
             // Lowercase the user login before comparing with database
         } else if (userRepository.findOneByLogin(userDTO.getLogin().toLowerCase()).isPresent()) {
-            throw new InternalException(ErrorCode.LOGIN_ALREADY_USED, "Login already in use");
+            throw new AppException(ErrorCode.LOGIN_ALREADY_USED);
         } else if (userRepository.findOneByEmailIgnoreCase(userDTO.getEmail()).isPresent()) {
-            throw new InternalException(ErrorCode.EMAIL_ALREADY_USED, "Email already in use");
+            throw new AppException(ErrorCode.EMAIL_ALREADY_USED);
         } else {
             User newUser = userService.createUser(userDTO);
             mailService.sendCreationEmail(newUser);
@@ -135,15 +137,15 @@ public class UserResource {
     public ResponseEntity<AdminUserDTO> updateUser(
         @PathVariable(name = "login", required = false) @Pattern(regexp = Constants.LOGIN_REGEX) String login,
         @Valid @RequestBody AdminUserDTO userDTO
-    ) throws InternalException {
+    ) throws AppException {
         LOG.debug("REST request to update User : {}", userDTO);
         Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
         if (existingUser.isPresent() && (!existingUser.orElseThrow().getId().equals(userDTO.getId()))) {
-            throw new InternalException(ErrorCode.EMAIL_ALREADY_USED, "Email already in use");
+            throw new AppException(ErrorCode.EMAIL_ALREADY_EXISTS);
         }
         existingUser = userRepository.findOneByLogin(userDTO.getLogin().toLowerCase());
         if (existingUser.isPresent() && (!existingUser.orElseThrow().getId().equals(userDTO.getId()))) {
-            throw new InternalException(ErrorCode.LOGIN_ALREADY_USED, "Login already in use");
+            throw new AppException(ErrorCode.LOGIN_ALREADY_USED);
         }
         Optional<AdminUserDTO> updatedUser = userService.updateUser(userDTO);
 
