@@ -1,0 +1,51 @@
+id,title,description,code,categoryId
+1,Bánh kem socola sữa,Bánh socola ngọt ngào với lớp kem sữa,CHOCO-S01,5
+2,Bánh kem socola đậm vị,Bánh kem socola đậm đà cho người yêu thích vị đắng,CHOCO-S02,5
+3,Bánh kem socola hạnh nhân,Bánh socola kết hợp hạt hạnh nhân thơm ngon,CHOCO-HA03,5
+4,Bánh kem socola trắng,Bánh kem socola trắng tinh tế,CHOCO-W04,5
+5,Bánh kem socola phủ dâu,Bánh socola trang trí dâu tươi,CHOCO-D05,5
+6,Bánh kem socola phủ chuối,Bánh socola kết hợp chuối ngọt ngào,CHOCO-B06,5
+7,Bánh kem trái cây nhiệt đới,Bánh kem với các loại trái cây nhiệt đới tươi mát,FRUIT-T01,6
+8,Bánh kem dâu và kiwi,Bánh kem kết hợp vị dâu ngọt và kiwi chua nhẹ,FRUIT-DK02,6
+9,Bánh kem xoài và chanh dây,Bánh kem hương vị xoài và chanh dây,FRUIT-XC03,6
+10,Bánh kem việt quất và mâm xôi,Bánh kem trái cây việt quất và mâm xôi,FRUIT-BR04,6
+11,Bánh kem nho và táo,Bánh kem tươi mát với nho và táo,FRUIT-NT05,6
+12,Bánh kem dưa hấu,Bánh kem vị dưa hấu ngọt lành,FRUIT-WM06,6
+13,Bánh kem phô mai Nhật,Bánh phô mai mềm mịn theo phong cách Nhật,PHOMAI-J01,7
+14,Bánh phô mai New York,Bánh phô mai nướng đặc trưng phong cách New York,PHOMAI-NY02,7
+15,Bánh kem phô mai socola,Bánh phô mai kết hợp socola,PHOMAI-S03,7
+16,Bánh kem phô mai dâu tây,Bánh phô mai kết hợp dâu tây,PHOMAI-D04,7
+17,Bánh kem phô mai caramel,Bánh phô mai phủ caramel đậm đà,PHOMAI-C05,7
+18,Bánh kem phô mai xoài,Bánh phô mai vị xoài tươi ngọt,PHOMAI-X06,7
+19,Bánh sinh nhật hoạt hình,Bánh sinh nhật trang trí với hình ảnh hoạt hình,BD-HH01,1
+20,Bánh sinh nhật nhân vật,Bánh sinh nhật với hình ảnh nhân vật yêu thích,BD-NV02,1
+21,Bánh sinh nhật hoa tươi,Bánh sinh nhật trang trí hoa tươi,BD-HT03,1
+22,Bánh sinh nhật thiên thần,Bánh sinh nhật với trang trí thiên thần ngọt ngào,BD-TT04,1
+23,Bánh sinh nhật chủ đề biển,Bánh sinh nhật phong cách biển,BD-B05,1
+24,Bánh sinh nhật chủ đề rừng,Bánh sinh nhật với hình ảnh thiên nhiên,BD-R06,1
+25,Bánh sinh nhật trái tim,Bánh sinh nhật hình trái tim,BST-HT01,1
+26,Bánh sinh nhật tròn,Bánh sinh nhật kiểu dáng tròn truyền thống,BST-T02,1
+27,Bánh sinh nhật vuông,Bánh sinh nhật với kiểu dáng vuông vức,BST-V03,1
+28,Bánh cưới lãng mạn cổ điển,Bánh cưới phong cách lãng mạn,CU-LMC01,8
+29,Bánh cưới hoa hồng trắng,Bánh cưới trang trí hoa hồng trắng,CU-LMW02,8
+30,Bánh cưới pha lê,Bánh cưới trang trí pha lê sang trọng,CU-LMP03,8
+31,Bánh cưới ren,Bánh cưới trang trí họa tiết ren,CU-R04,8
+32,Bánh cưới phong cách Boho,Bánh cưới phong cách Boho tự nhiên,CU-BH05,8
+33,Bánh cưới lãng mạn đỏ thắm,Bánh cưới lãng mạn với màu đỏ chủ đạo,CU-RD06,8
+34,Bánh cưới hiện đại tối giản,Bánh cưới phong cách tối giản,CU-HD01,9
+35,Bánh cưới hoa tươi,Bánh cưới hiện đại với hoa tươi trang trí,CU-HD02,9
+36,Bánh cưới kính cường lực,Bánh cưới với kính cường lực trong suốt,CU-K03,9
+37,Bánh cưới tráng men,Bánh cưới trang trí tráng men lấp lánh,CU-TM04,9
+38,Bánh cưới hồng pastel,Bánh cưới hồng pastel nhẹ nhàng,CU-HP05,9
+39,Bánh cưới vàng ánh kim,Bánh cưới vàng ánh kim sang trọng,CU-V06,9
+40,Bánh sự kiện doanh nghiệp,Bánh sự kiện trang trí logo doanh nghiệp,SE-DN01,3
+41,Bánh sự kiện khai trương,Bánh mừng khai trương trang trí sang trọng,SE-KT02,3
+42,Bánh sự kiện sinh nhật công ty,Bánh sinh nhật dành cho công ty,SE-SC03,3
+43,Bánh sự kiện cuối năm,Bánh sự kiện mừng cuối năm,SE-TT04,3
+58,Bánh sinh nhật tuổi teen,Bánh sinh nhật năng động cho tuổi teen,BD-TE05,1
+59,Bánh cưới phong cách châu Âu,Bánh cưới phong cách cổ điển châu Âu,CU-CE07,8
+60,Bánh sinh nhật gấu bông,Bánh sinh nhật hình gấu bông,BST-GB04,1
+61,Bánh sinh nhật hoa vàng,Bánh sinh nhật trang trí hoa vàng,BST-HV05,1
+62,Bánh sinh nhật lâu đài,Bánh sinh nhật trang trí lâu đài cổ tích,BST-LD06,1
+63,Bánh cưới ánh bạc,Bánh cưới ánh bạc lấp lánh,CU-AB08,9
+64,Bánh cưới ánh đồng,Bánh cưới trang trí ánh đồng cổ điển,CU-AC10,9

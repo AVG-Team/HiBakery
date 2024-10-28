@@ -1,0 +1,11 @@
+name: hibakery
+services:
+  mysql:
+    image: mysql:latest
+    restart: no
+    volumes:
+      - ./config/mysql:/etc/mysql/conf.d
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "4000:3306"

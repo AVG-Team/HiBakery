@@ -1,0 +1,30 @@
+{
+  "annotations": {
+    "changelogDate": "20241015130336"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "price",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "quantity",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "deletedAt",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "OrderDetail",
+  "relationships": []
+}
