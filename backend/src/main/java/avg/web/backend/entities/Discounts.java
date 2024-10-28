@@ -1,9 +1,6 @@
 package avg.web.backend.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -39,10 +36,12 @@ public class Discounts extends BaseEntity {
     Integer percent;
 
     @NotNull(message = "Start time cannot be null")
+    @Column(name = "start_date")
     Timestamp start;
 
     @NotNull(message = "End time cannot be null")
     @Future(message = "End time must be in the future")
+    @Column(name = "end_date")
     Timestamp end;
 
     @NotNull(message = "Active status cannot be null")

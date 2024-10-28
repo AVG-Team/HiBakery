@@ -12,7 +12,7 @@ export default function SupportItem() {
                         </div>
                         <div className="flex flex-row items-center justify-center">
                             <p className="text-xl font-bold text-center whitespace-pre-wrap text-Light-Apricot-500">
-                                Daily <br /> Discount
+                                Giảm Giá <br /> Hằng Ngày
                             </p>
                         </div>
                     </div>
@@ -22,7 +22,7 @@ export default function SupportItem() {
                         </div>
                         <div className="flex flex-row items-center justify-center">
                             <p className="text-xl font-bold text-center whitespace-pre-wrap text-Light-Apricot-500">
-                                Live <br /> Tracing
+                                Theo Dõi <br /> Trực Tiếp
                             </p>
                         </div>
                     </div>
@@ -32,9 +32,9 @@ export default function SupportItem() {
                         </div>
                         <div className="flex flex-row items-center justify-center">
                             <p className="text-xl font-bold text-center whitespace-pre-wrap text-Light-Apricot-500">
-                                Quick
+                                Giao Hàng
                                 <br />
-                                Delivery
+                                Nhanh
                             </p>
                         </div>
                     </div>

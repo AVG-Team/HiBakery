@@ -1,66 +1,59 @@
-import {useEffect, useState} from 'react';
-import Shipping from './Shipping';
-import Delivery from './Delivery';
-import Payment from './Payment';
-import Success from './Success';
-import Logo from '../../../assets/img/logo/HiBakery-logo.png';
-import CheckIcon from '../../../assets/img/Icon/check.svg';
-import CheckedIcon from '../../../assets/img/Icon/activated_check.svg';
-import TrashCan from '../../../assets/img/Icon/trash-can.svg';
-import PropTypes from "prop-types"; // Import trash can icon
+import { useEffect, useState } from "react";
+import Shipping from "./Shipping";
+import Delivery from "./Delivery";
+import Payment from "./Payment";
+import Success from "./Success";
+import Logo from "../../../assets/img/logo/HiBakery-logo.png";
+import CheckIcon from "../../../assets/img/Icon/check.svg";
+import CheckedIcon from "../../../assets/img/Icon/activated_check.svg";
+import TrashCan from "../../../assets/img/Icon/trash-can.svg";
+import PropTypes from "prop-types";
 
 MultiStepForm.propTypes = {
-    Logo: PropTypes.string,
-    CheckIcon: PropTypes.string,
-    CheckedIcon: PropTypes.string,
-    TrashCan: PropTypes.string,
+    orderDetails: PropTypes.shape({
+        subtotal: PropTypes.number,
+        discount: PropTypes.number,
+        deliveryFee: PropTypes.number,
+        total: PropTypes.number,
+        cart: PropTypes.arrayOf(
+            PropTypes.shape({
+                productId: PropTypes.string.isRequired,
+                imagePath: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired,
+                quantity: PropTypes.number.isRequired,
+                price: PropTypes.number.isRequired,
+            }),
+        ).isRequired,
+    }).isRequired,
 };
 
-export default function MultiStepForm() {
-    const orderItems = [
-        {id: 1, name: 'Pure set', price: 65000, quantity: 1, imageUrl: 'https://via.placeholder.com/50'},
-        {id: 2, name: 'Glow Cream', price: 95000, quantity: 2, imageUrl: 'https://via.placeholder.com/50'},
-    ];
-
-    const discountItems = [
-        {id: 1, name: 'Discount 10%', code: 'DISCOUNT10', percent: 10, start: "2024-09-01 00:00:00", end: "2024-09-30 23:59:59", active: true},
-        {id: 2, name: 'Discount 20%', code: 'DISCOUNT20', percent: 20, start: "2024-09-01 00:00:00", end: "2024-09-30 23:59:59", active: true},
-    ];
-
-    let totalMoney = 0;
-    orderItems.forEach(item => {
-        totalMoney += item.price * item.quantity;
-    });
-
-    const [subtotal, setSubtotal] = useState(totalMoney);
-    const [discountAmount, setDiscountAmount] = useState(0);
-    const [total, setTotal] = useState(totalMoney);
+export default function MultiStepForm({ orderDetails = { cart: [] } }) {
+    // Default to empty cart
+    const [subtotal, setSubtotal] = useState(orderDetails.subtotal);
+    const [discountAmount, setDiscountAmount] = useState(orderDetails.discount);
+    const [total, setTotal] = useState(orderDetails.total);
 
     useEffect(() => {
-        const calculatedSubtotal = orderItems.reduce((total, item) => total + item.price * item.quantity, 0);
-        setSubtotal(calculatedSubtotal);
-        setTotal(calculatedSubtotal - discountAmount);
-    }, [orderItems, discountAmount]);
+        // Whenever subtotal or discountAmount changes, recalculate total
+        setTotal(subtotal - discountAmount);
+    }, [subtotal, discountAmount]);
 
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        flatHouseNo: '',
-        address: '',
-        city: '',
-        district: '',
-        ward: '',
-        note: '',
-        discountCode: '',
-        deliveryTime: '',
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+        flatHouseNo: "",
+        address: "",
+        city: "",
+        district: "",
+        ward: "",
+        note: "",
+        discountCode: "",
+        deliveryTime: "",
         paymentMethod: 1,
-        imagePayment: '',
-        orderItems: orderItems.map(item => ({
-            productId: item.id,
-            quantity: item.quantity
-        }))
+        imagePayment: "",
+        orderItems: [], // This should be populated based on the context
     });
 
     const updateFormData = (newData) => {
@@ -70,15 +63,18 @@ export default function MultiStepForm() {
         }));
     };
 
-    const [tempDiscountCode, setTempDiscountCode] = useState('');
+    const discountItems = [
+        // Your discount items here...
+    ];
+
+    const [tempDiscountCode, setTempDiscountCode] = useState("");
 
     const handleChange = (e) => {
         setTempDiscountCode(e.target.value);
     };
 
     const handleApply = () => {
-        const discountItem = discountItems.find(item => item.code === tempDiscountCode && item.active);
-        console.log(discountItem);
+        const discountItem = discountItems.find((item) => item.code === tempDiscountCode && item.active);
         if (discountItem) {
             const discountValue = (subtotal * discountItem.percent) / 100;
             setDiscountAmount(discountValue);
@@ -88,7 +84,7 @@ export default function MultiStepForm() {
         } else {
             setDiscountAmount(0);
             updateFormData({
-                discountCode: '',
+                discountCode: "",
             });
         }
     };
@@ -99,54 +95,66 @@ export default function MultiStepForm() {
     const prevStep = () => setStep(step - 1);
 
     return (
-        <div className="flex flex-col md:flex-row w-full min-h-screen bg-gray-100">
+        <div className="flex flex-col w-full min-h-screen bg-gray-100 md:flex-row">
             {/* Order Summary Section */}
-            <div className="flex flex-col flex-wrap content-center w-full md:w-1/2 px-20 py-5 bg-white">
+            <div className="flex flex-col flex-wrap content-center w-full px-20 py-5 bg-white md:w-1/2">
                 <div className="flex items-center mb-4">
-                    <img src={Logo} alt="Logo" className="h-16"/>
+                    <img src={Logo} alt="Logo" className="h-16" />
                 </div>
                 <div className="flex items-center mb-4">
                     <button className="mr-2">&#8592;</button>
-                    {/* Back button */}
-                    <h2 className="text-xl font-semibold mb-4 mt-4">Order Summary</h2>
+                    <h2 className="mt-4 mb-4 text-xl font-semibold">Order Summary</h2>
                 </div>
 
                 <div className="h-64 overflow-y-auto pr-2 w-full sm:w-[28rem] lg:w-[37.5rem]">
                     {/* Display order items */}
-                    {orderItems.map(item => (
-                        <div key={item.id} className="flex items-start justify-between mb-6">
-                            <div className="flex items-center">
-                                <img src={item.imageUrl} alt={item.name} className="w-16 h-16 mr-4"/>
-                                <div>
-                                    <h4 className="font-semibold">{item.name}</h4>
-                                    <p>Quantity: {item.quantity}</p>
+                    {orderDetails.cart && orderDetails.cart.length > 0 ? (
+                        orderDetails.cart.map((item) => (
+                            <div key={item.productId} className="flex items-start justify-between mb-6">
+                                <div className="flex items-center">
+                                    <img src={item.imagePath} alt={item.name} className="w-16 h-16 mr-4" />
+                                    <div>
+                                        <h4 className="font-semibold">{item.name}</h4>
+                                        <p>Quantity: {item.quantity}</p>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col items-center">
+                                    <p className="mb-1 text-base">
+                                        {(item.price * item.quantity).toLocaleString()} VND
+                                    </p>
+                                    <button className="p-2 rounded hover:bg-gray-200">
+                                        <img src={TrashCan} alt="Delete" className="w-6 h-6" />
+                                    </button>
                                 </div>
                             </div>
-                            <div className="flex flex-col items-center "> {/* Move the price and trash can up */}
-                                {/* Price displayed in VND format */}
-                                <p className="mb-1 text-base">{(item.price * item.quantity).toLocaleString()} VND</p> {/* Adjusted font size and margin */}
-                                {/* Trash can icon placed under the price */}
-                                <button className="p-2 hover:bg-gray-200 rounded "> {/* Reduced margin-top */}
-                                    <img src={TrashCan} alt="Delete" className="h-6 w-6"/> {/* Trash can icon */}
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+                        ))
+                    ) : (
+                        <p>No items in the cart</p>
+                    )}
                 </div>
 
                 {/* Order summary details */}
-                <div className='grid grid-rows-4 w-full md:w-2/4 mx-auto'>
+                <div className="grid w-full grid-rows-4 mx-auto md:w-2/4">
                     <div className="mt-4">
                         <label className="block mb-2">Gift Card / Discount code</label>
                         <div className="flex">
-                            <input type="text" name="discountCode" value={tempDiscountCode} onChange={handleChange}
-                                   className="p-2 border flex-1 rounded-l" placeholder="Enter code"/>
-                            <button onClick={handleApply}
-                                    className="px-6 py-2 border border-[#f05a7e] text-[#f05a7e] rounded-md hover:bg-[#f05a7e] hover:text-white transition duration-300">Apply
+                            <input
+                                type="text"
+                                name="discountCode"
+                                value={tempDiscountCode}
+                                onChange={handleChange}
+                                className="flex-1 p-2 border rounded-l"
+                                placeholder="Enter code"
+                            />
+                            <button
+                                onClick={handleApply}
+                                className="px-6 py-2 border border-[#f05a7e] text-[#f05a7e] rounded-md hover:bg-[#f05a7e] hover:text-white transition duration-300"
+                            >
+                                Apply
                             </button>
                         </div>
                     </div>
-                    <div className="mt-4 border-t pt-4">
+                    <div className="pt-4 mt-4 border-t">
                         <div className="flex justify-between mb-2">
                             <p>Subtotal</p>
                             <p>{subtotal.toLocaleString()} VND</p>
@@ -170,28 +178,48 @@ export default function MultiStepForm() {
             </div>
 
             {/* Step Form Section */}
-            <div className="w-full md:flex-1 p-20 md:p-30 bg-white mt-5 md:mt-0">
-                <div className="flex items-center justify-center space-x-2 text-gray-500 mb-8">
-                    <h2 className={`text-sm md:text-base ${step >= 1 ? 'text-[#f05a7e] font-semibold' : ''}`}>Shipping</h2>
-                    <span className={`${step >= 2 ? 'text-[#f05a7e]' : ''}`}>—</span>
-                    <img className='h-4' src={step >= 2 ? CheckedIcon : CheckIcon} alt="check"/>
-                    <span className={`${step >= 2 ? 'text-[#f05a7e]' : ''}`}>—</span>
-                    <h2 className={`text-sm md:text-base ${step >= 2 ? 'text-[#f05a7e] font-semibold' : ''}`}>Delivery</h2>
-                    <span className={`${step >= 3 ? 'text-[#f05a7e]' : ''}`}>—</span>
-                    <img className='h-4' src={step >= 3 ? CheckedIcon : CheckIcon} alt="checked"/>
-                    <span className={`${step >= 4 ? 'text-[#f05a7e]' : ''}`}>—</span>
-                    <h2 className={`text-sm md:text-base ${step >= 3 ? 'text-[#f05a7e] font-semibold' : ''}`}>Payment</h2>
-                    <span className={`${step >= 4 ? 'text-[#f05a7e]' : ''}`}>—</span>
-                    <h2 className={`text-sm md:text-base ${step >= 4 ? 'text-[#f05a7e] font-semibold' : ''}`}>Success</h2>
+            <div className="w-full p-20 mt-5 bg-white md:flex-1 md:p-30 md:mt-0">
+                <div className="flex items-center justify-center mb-8 space-x-2 text-gray-500">
+                    <h2 className={`text-sm md:text-base ${step >= 1 ? "text-[#f05a7e] font-semibold" : ""}`}>
+                        Shipping
+                    </h2>
+                    <span className={`${step >= 2 ? "text-[#f05a7e]" : ""}`}>—</span>
+                    <img className="h-4" src={step >= 2 ? CheckedIcon : CheckIcon} alt="check" />
+                    <span className={`${step >= 2 ? "text-[#f05a7e]" : ""}`}>—</span>
+                    <h2 className={`text-sm md:text-base ${step >= 2 ? "text-[#f05a7e] font-semibold" : ""}`}>
+                        Delivery
+                    </h2>
+                    <span className={`${step >= 3 ? "text-[#f05a7e]" : ""}`}>—</span>
+                    <img className="h-4" src={step >= 3 ? CheckedIcon : CheckIcon} alt="checked" />
+                    <span className={`${step >= 4 ? "text-[#f05a7e]" : ""}`}>—</span>
+                    <h2 className={`text-sm md:text-base ${step >= 3 ? "text-[#f05a7e] font-semibold" : ""}`}>
+                        Payment
+                    </h2>
+                    <span className={`${step >= 4 ? "text-[#f05a7e]" : ""}`}>—</span>
+                    <h2 className={`text-sm md:text-base ${step >= 4 ? "text-[#f05a7e] font-semibold" : ""}`}>
+                        Success
+                    </h2>
                 </div>
 
-                {step === 1 && <Shipping nextStep={nextStep} formData={formData} updateFormData={updateFormData}/>}
-                {step === 2 && <Delivery nextStep={nextStep} formData={formData} prevStep={prevStep}
-                                         updateFormData={updateFormData}/>}
-                {step === 3 && <Payment nextStep={nextStep} formData={formData} prevStep={prevStep}
-                                         updateFormData={updateFormData}/>}
-                {step === 4 && <Success prevStep={prevStep} formData={formData} updateFormData={updateFormData}/>}
+                {step === 1 && <Shipping nextStep={nextStep} formData={formData} updateFormData={updateFormData} />}
+                {step === 2 && (
+                    <Delivery
+                        nextStep={nextStep}
+                        formData={formData}
+                        prevStep={prevStep}
+                        updateFormData={updateFormData}
+                    />
+                )}
+                {step === 3 && (
+                    <Payment
+                        nextStep={nextStep}
+                        formData={formData}
+                        prevStep={prevStep}
+                        updateFormData={updateFormData}
+                    />
+                )}
+                {step === 4 && <Success prevStep={prevStep} formData={formData} updateFormData={updateFormData} />}
             </div>
         </div>
     );
-};
+}

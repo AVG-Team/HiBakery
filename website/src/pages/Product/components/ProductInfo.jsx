@@ -45,14 +45,14 @@ export default function ProductInfo({ product }) {
                 </h1>
                 <div className="flex flex-col items-start pl-3 mt-1.5 w-full">
                     <div className="flex gap-2.5 ml-4 mt-3 text-xl leading-none text-center text-black whitespace-nowrap">
-                        <div className="my-auto grow">{product.rating}</div>
+                        {/* <div className="my-auto grow">{product.rating}</div> */}
                         {[1, 2, 3, 4, 5].map((star) => (
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
                                 fill="currentColor"
                                 key={star}
-                                className={`size-6 mr-1 ${star <= product ? "text-yellow-500" : "text-gray-300"}`}
+                                className={`size-6 mr-1 ${star <= 4 ? "text-yellow-500" : "text-gray-300"}`}
                             >
                                 <path
                                     fillRule="evenodd"
@@ -109,12 +109,12 @@ export default function ProductInfo({ product }) {
                 </div>
                 <div className="flex pt-3 mt-8 text-lg text-black border-t">
                     <p className="ml-3 mr-5 font-medium">Category:</p>{" "}
-                    <a
-                        className="uppercase text-Coral-Pink-300 hover:cursor-pointer hover:text-Coral-Pink-300"
-                        href="#"
+                    <button
+                        className="p-0 uppercase bg-transparent border-none text-Coral-Pink-300 hover:cursor-pointer hover:text-Coral-Pink-300"
+                        type="button"
                     >
                         {category.name}
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>

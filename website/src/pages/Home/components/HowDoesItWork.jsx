@@ -25,22 +25,27 @@ export default function HowDoesItWork() {
         {
             id: 1,
             icon: Location,
-            title: "Selection Option",
-            description: "Choose the location where your food will be delivery",
+            title: "Tùy chọn lựa chọn",
+            description: "Chọn địa điểm nơi thực phẩm của bạn sẽ được giao",
         },
-        { id: 2, icon: Order, title: "Order", description: "Choose the location where your food will be delivery" },
-        { id: 3, icon: Payment, title: "Payment", description: "Choose the location where your food will be delivery" },
+        { id: 2, icon: Order, title: "Đặt hàng", description: "Đặt hàng nhanh chóng giao hàng tận nơi" },
+        {
+            id: 3,
+            icon: Payment,
+            title: "Thanh toán",
+            description: "Thanh toán bằng cách chuyển khoản hoặc thanh toán khi nhận hàng",
+        },
         {
             id: 4,
             icon: Meat,
-            title: "Enjoy Meats",
-            description: "Choose the location where your food will be delivery",
+            title: "Thưởng thức bữa ăn",
+            description: "Thưởng thức bữa ăn ngon miệng tại nhà",
         },
     ];
     return (
         <div className="w-full mt-20 bg-Light-Apricot-500/[20%] py-10">
             <div className="flex items-center justify-center p-4">
-                <p className="text-3xl font-bold text-center text-Coral-Pink-500">How Does It Work?</p>
+                <p className="text-3xl font-bold text-center text-Coral-Pink-500">Nó hoạt động như thế nào?</p>
             </div>
             <div className="flex flex-row items-center justify-center gap-10 p-4">
                 {items.map((item) => (
