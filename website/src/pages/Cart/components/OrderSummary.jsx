@@ -13,7 +13,7 @@ const OrderSummary = ({ order, offers, delivery, total, cart }) => {
                     orderDetails: {
                         cart: cart,
                         subtotal: order,
-                        discount: offers,
+                        discountCode: offers,
                         deliveryFee: delivery,
                         total: total,
                     },
@@ -27,22 +27,22 @@ const OrderSummary = ({ order, offers, delivery, total, cart }) => {
 
     return (
         <div className="w-full p-6 bg-white border-2 rounded-lg shadow-md ">
-            <h2 className="mb-4 text-xl font-semibold">Order Summary</h2>
+            <h2 className="mb-4 text-xl font-semibold">Tóm tắt đơn hàng</h2>
             <div className="space-y-2">
                 <div className="flex justify-between">
-                    <span>Order</span>
+                    <span>Sản phẩm</span>
                     <span>{order.toLocaleString()} ₫</span>
                 </div>
                 <div className="flex justify-between text-green-600">
-                    <span>Offers</span>
-                    <span>-{offers.toLocaleString()} ₫</span>
+                    <span>Giảm giá</span>
+                    <span>{offers ? "-10%" : "0%"} ₫</span>
                 </div>
                 <div className="flex justify-between">
-                    <span>Delivery</span>
+                    <span>Vận chuyển</span>
                     <span>{delivery.toLocaleString()} ₫</span>
                 </div>
                 <div className="flex justify-between pt-2 font-semibold border-t">
-                    <span>Total</span>
+                    <span>Tổng</span>
                     <span>{total.toLocaleString()} ₫</span>
                 </div>
             </div>

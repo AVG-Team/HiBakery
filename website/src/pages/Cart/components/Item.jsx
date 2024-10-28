@@ -3,8 +3,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 
 const Item = ({ item, onQuantityChange, onRemove }) => {
-    const quantity = 1;
-    const total = item.price * quantity;
+    const total = item.price * item.quantity;
+
+    const handleIncrement = () => {
+        onQuantityChange(item.id, item.quantity + 1);
+    };
+
+    const handleDecrement = () => {
+        if (item.quantity > 1) {
+            onQuantityChange(item.id, item.quantity - 1);
+        }
+    };
 
     return (
         <div className="flex items-center justify-between px-4 py-3 mb-2 bg-white border-2 rounded-lg shadow">
@@ -20,17 +29,23 @@ const Item = ({ item, onQuantityChange, onRemove }) => {
             </div>
             <div className="flex items-center space-x-8">
                 <span className="w-24 font-semibold text-center">{item.price.toLocaleString()} ₫</span>
-                <div className="flex items-center justify-center w-24 space-x-2">
+                <div className="flex items-center justify-end">
                     <button
-                        className="px-2 py-1 bg-gray-200 rounded"
-                        onClick={() => onQuantityChange(item.id, Math.max(1, quantity - 1))}
+                        className="px-2 py-1 mr-2 text-white rounded-lg bg-Coral-Pink-500 hover:bg-Coral-Pink-300"
+                        onClick={handleDecrement}
                     >
                         -
                     </button>
-                    <span>{quantity}</span>
+                    <input
+                        type="number"
+                        min="1"
+                        value={item.quantity}
+                        onChange={(e) => onQuantityChange(item.id, parseInt(e.target.value))}
+                        className="w-16 px-2 py-1 text-center border-2 rounded-lg border-Coral-Pink-500 focus:outline-none"
+                    />
                     <button
-                        className="px-2 py-1 bg-gray-200 rounded"
-                        onClick={() => onQuantityChange(item.id, quantity + 1)}
+                        className="px-2 py-1 ml-2 text-white rounded-lg bg-Coral-Pink-500 hover:bg-Coral-Pink-300"
+                        onClick={handleIncrement}
                     >
                         +
                     </button>

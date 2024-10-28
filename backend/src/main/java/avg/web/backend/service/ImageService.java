@@ -25,9 +25,6 @@ public class ImageService implements BaseService<ImageDTO, Long> {
 
     @Override
     public ImageDTO create(ImageDTO DTO) {
-        if(repository.existsById(DTO.getId())) {
-            throw new AppException(ErrorCode.ENTITY_EXISTS);
-        }
         Images entity = mapper.toEntity(DTO);
         entity = repository.save(entity);
         return mapper.toDto(entity);

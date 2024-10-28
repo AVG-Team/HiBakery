@@ -59,7 +59,7 @@ public class OrderService {
 
 
     public Orders createOrder(OrderBillDTO orderRequest, MultipartFile imagePayment) {
-        try {
+//        try {
             System.out.println("Order " + orderRequest);
             Discounts discount = getDiscountCode(orderRequest.getDiscountCode());
             String discountCode = "";
@@ -84,10 +84,10 @@ public class OrderService {
             Orders order = createOrder(orderRequest, bill.getId(), total, discountId);
             createOrderDetail(orderRequest.getOrderItems(), order.getId());
             return order;
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-            return null;
-        }
+//        } catch (Exception e) {
+//            System.out.println("Error: " + e.getMessage());
+//            return null;
+//        }
     }
 
     private Discounts getDiscountCode(String code) {
@@ -126,8 +126,9 @@ public class OrderService {
             return null;
         }
 
-        String fileName = fileService.savaFileStatic(file, "bills");
-        if (fileName != null) {
+        String fileName = fileService.saveFileStatic(file, "bills");
+        System.out.println(fileName);
+        if (fileName == null) {
             return null;
         }
 
@@ -143,8 +144,9 @@ public class OrderService {
 
     private Orders createOrder(OrderBillDTO orderRequest, String billId, Long total, Long discountId) {
         Orders order = new Orders();
-        Optional<User> user = userRepository.findOneByEmailIgnoreCase(orderRequest.getEmail());
-        order.setUserId(user.get().getId());
+        User user = userRepository.findUserByEmail(orderRequest.getEmail());
+        Long userId = user.getId();
+        order.setUserId(userId);
         order.setName(orderRequest.getFirstName() + " " + orderRequest.getLastName());
         order.setPhone(orderRequest.getPhoneNumber());
         order.setProvince(orderRequest.getCity());

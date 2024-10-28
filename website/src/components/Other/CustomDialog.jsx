@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef } from "react";
-import PropTypes from "prop-types";
 import Logo from "../../assets/img/logo/HiBakery-logo.png";
 import { CartContext } from "../../context/CartContext";
 
+// eslint-disable-next-line react/prop-types
 export default function CustomDialog({ isOpen, onClose, productName, productPrice, product }) {
     const dialogRef = useRef(null);
     const { addToCart } = useContext(CartContext);
@@ -36,9 +36,8 @@ export default function CustomDialog({ isOpen, onClose, productName, productPric
         // Chuẩn bị dữ liệu sản phẩm trước khi thêm vào giỏ
         const productToAdd = {
             id: product.id, // Đảm bảo có id
-            name: product.title, // Tên sản phẩm
-            price: product.price,
-            imagePath: product.imagePath, // Giá sản phẩm
+            name: productName, // Tên sản phẩm
+            price: productPrice, // Giá sản phẩm
             // Thêm các thông tin khác của sản phẩm nếu cần
             ...product,
         };
@@ -51,6 +50,21 @@ export default function CustomDialog({ isOpen, onClose, productName, productPric
         // Đóng dialog sau khi thêm vào giỏ hàng
         onClose();
     };
+
+    // Debug: Kiểm tra giỏ hàng hiện tại
+    useEffect(() => {
+        const cartData = sessionStorage.getItem("cart");
+        if (cartData) {
+            try {
+                const parsedCart = JSON.parse(cartData);
+                console.log("Giỏ hàng hiện tại:", parsedCart);
+            } catch (error) {
+                console.error("Lỗi khi đọc giỏ hàng:", error);
+            }
+        } else {
+            console.log("Giỏ hàng trống.");
+        }
+    }, []);
 
     const formattedPrice = typeof productPrice === "number" ? productPrice.toLocaleString() : productPrice;
 
@@ -101,15 +115,3 @@ export default function CustomDialog({ isOpen, onClose, productName, productPric
         </div>
     );
 }
-CustomDialog.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
-    productName: PropTypes.string.isRequired,
-    productPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    product: PropTypes.shape({
-        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-        title: PropTypes.string.isRequired,
-        price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-        imagePath: PropTypes.string,
-    }).isRequired,
-};

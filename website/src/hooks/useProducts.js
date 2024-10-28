@@ -73,9 +73,6 @@ export const useProducts = () => {
                 description: response.result.description,
                 ...detailResponse.result,
             };
-
-            productCache.set(id, enrichedProduct); // Lưu vào cache
-            console.log("Enriched product:", enrichedProduct);
             setProduct(enrichedProduct);
         } catch (err) {
             console.error("Error fetching product:", err);
@@ -91,9 +88,7 @@ export const useProducts = () => {
             console.log("Fetching products by category...", categoryId);
             const categoryResponse = await productApi.getByCategory(categoryId || null);
 
-            // Giới hạn số lượng sản phẩm trả về
-            const limitedProducts = categoryResponse.result.slice(0, 20);
-            const enrichedCategoryProducts = await enrichProductData(limitedProducts);
+            const enrichedCategoryProducts = await enrichProductData(categoryResponse.result);
             setProductByCategory(enrichedCategoryProducts);
         } catch (err) {
             console.error("Error fetching products by category:", err);

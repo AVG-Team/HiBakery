@@ -23,20 +23,32 @@ public class FileService {
         return (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1);
     }
 
-    public String savaFileStatic(MultipartFile file, String folderName) {
+    public String saveFileStatic(MultipartFile file, String folderName) {
         String folderPath = fileSystemStatic + folderName;
-        System.out.println(folderPath);
+        System.out.println("Folder path: " + folderPath);
+
         try {
+            // Kiểm tra và tạo thư mục nếu chưa tồn tại
+            Path folderDir = Paths.get(folderPath);
+            if (!Files.exists(folderDir)) {
+                Files.createDirectories(folderDir);  // Tạo thư mục và các thư mục cha nếu cần
+            }
+
+            // Đọc nội dung file và tạo tên file mới
             byte[] bytes = file.getBytes();
             String fileName = System.currentTimeMillis() + "." + getFileExtension(file.getOriginalFilename());
-            Path path = Paths.get(folderPath + File.separator + fileName);
-            System.out.println(path);
-            Files.write(path, bytes);
+            Path filePath = folderDir.resolve(fileName); // Đường dẫn đầy đủ của tệp
 
-            return fileName;
+            System.out.println("File path: " + filePath);
+
+            // Ghi file vào hệ thống
+            Files.write(filePath, bytes);
+
+            return fileName; // Trả về tên file nếu thành công
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-            return null;
+            System.out.println("Error: " + ex.getMessage());
+            return null; // Trả về null nếu có lỗi
         }
     }
+
 }

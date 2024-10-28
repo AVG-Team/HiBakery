@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback, useMemo } from "react";
+import React, { useContext, useState, useCallback, useMemo, useEffect } from "react";
 import { faChevronLeft, faChevronRight, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
@@ -118,16 +118,30 @@ export default function Cart() {
     const { popularProducts } = useProducts();
     const DELIVERY_FEE = 15000;
 
+    const [discountCode, setDiscountCode] = useState("");
+
+    useEffect(() => {
+        const storedDiscountCode = sessionStorage.getItem("dicountCode");
+        if (storedDiscountCode) {
+            setDiscountCode(storedDiscountCode);
+        }
+    }, []);
+
+    const handleDiscountCodeChange = (e) => {
+        const code = e.target.value;
+        setDiscountCode(code);
+        sessionStorage.setItem("dicountCode", code);
+    };
+
     const calculateOrderTotal = useMemo(() => {
         return cart.reduce((total, item) => total + item.price * item.quantity, 0);
     }, [cart]);
-
-    const [discountAmount, setDiscountAmount] = useState(0);
 
     const handleQuantityChange = useCallback(
         (id, newQuantity) => {
             if (newQuantity < 1) return;
             updateCartItemQuantity(id, newQuantity);
+            sessionStorage.setItem(`cart-item-${id}-quantity`, newQuantity);
         },
         [updateCartItemQuantity],
     );
@@ -139,10 +153,10 @@ export default function Cart() {
         [removeFromCart],
     );
 
-    const total = useMemo(
-        () => calculateOrderTotal + DELIVERY_FEE - discountAmount,
-        [calculateOrderTotal, discountAmount],
-    );
+    const total = useMemo(() => {
+        const discountedTotal = calculateOrderTotal - calculateOrderTotal * (discountCode ? 0.1 : 0);
+        return discountedTotal + DELIVERY_FEE;
+    }, [calculateOrderTotal, discountCode]);
 
     return (
         <div className="flex flex-col items-center justify-center w-full pt-20">
@@ -162,21 +176,21 @@ export default function Cart() {
                     <input
                         type="text"
                         placeholder="Add discount code"
+                        value={discountCode}
+                        onChange={handleDiscountCodeChange}
                         className="w-full pl-6 border-none rounded-lg text-md focus:outline-none"
                     />
                 </div>
             </div>
-
             <div className="w-full px-40 mt-5">
                 <OrderSummary
                     cart={cart}
                     order={calculateOrderTotal}
-                    offers={discountAmount}
+                    offers={discountCode}
                     delivery={DELIVERY_FEE}
                     total={total}
                 />
             </div>
-
             <div className="w-full px-40 mt-5">
                 <div className="w-full p-4 bg-white">
                     <h2 className="mb-4 text-xl font-semibold">Other Products</h2>
