@@ -1,3 +1,4 @@
+import { useState } from "react";
 import AddToCartBtn from "./AddToCartBtn";
 import PropTypes from "prop-types";
 import useCatgories from "../../../hooks/useCategories";
@@ -10,32 +11,45 @@ ProductInfo.propTypes = {
         price: PropTypes.number.isRequired,
         categoryId: PropTypes.string.isRequired,
         imagePath: PropTypes.string.isRequired,
-        // Add other product properties as needed
     }).isRequired,
 };
 
 const SIZE_PRODUCT = [
-    {
-        id: 1,
-        size: "Small",
-    },
-    {
-        id: 2,
-        size: "Medium",
-    },
-    {
-        id: 3,
-        size: "Large",
-    },
+    { id: 1, size: "Small" },
+    { id: 2, size: "Medium" },
+    { id: 3, size: "Large" },
 ];
 
 export default function ProductInfo({ product }) {
-    const formattedPrice = new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(product.price);
+    const [selectedSize, setSelectedSize] = useState(SIZE_PRODUCT[0].size);
+    const [quantity, setQuantity] = useState(1);
+    const formattedPrice = new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+    }).format(product.price);
     const { category, fetchCategory } = useCatgories();
 
     useEffect(() => {
         fetchCategory(product.categoryId);
     }, [product.categoryId]);
+
+    const handleSizeChange = (e) => {
+        setSelectedSize(e.target.value);
+    };
+
+    const handleQuantityChange = (e) => {
+        setQuantity(parseInt(e.target.value));
+    };
+
+    // Prepare order data for the cart
+    const orderData = {
+        productId: product.id,
+        productTitle: product.title,
+        price: product.price,
+        size: selectedSize,
+        quantity: quantity,
+        imagePath: product.imagePath,
+    };
 
     return (
         <div className="flex flex-col ml-5 w-[58%]">
@@ -43,9 +57,9 @@ export default function ProductInfo({ product }) {
                 <h1 className="self-start text-5xl font-semibold leading-none text-center text-Coral-Pink-500 max-md:text-4xl whitespace-nowrap">
                     {product.title}
                 </h1>
+                {/* Rating stars section remains unchanged */}
                 <div className="flex flex-col items-start pl-3 mt-1.5 w-full">
                     <div className="flex gap-2.5 ml-4 mt-3 text-xl leading-none text-center text-black whitespace-nowrap">
-                        {/* <div className="my-auto grow">{product.rating}</div> */}
                         {[1, 2, 3, 4, 5].map((star) => (
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +87,8 @@ export default function ProductInfo({ product }) {
                         <div className="flex flex-col self-stretch justify-center w-40">
                             <select
                                 name="size"
-                                autoComplete="size"
+                                value={selectedSize}
+                                onChange={handleSizeChange}
                                 className="w-full text-center rounded-md border-0 py-2 text-gray-900 shadow-sm min-h-[45px]
                                 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-Coral-Pink-300 focus:outline-0"
                             >
@@ -97,18 +112,19 @@ export default function ProductInfo({ product }) {
                             <input
                                 type="number"
                                 id="quantity"
+                                value={quantity}
+                                onChange={handleQuantityChange}
                                 className="w-full text-center rounded-md border-0 py-2 pr-2 text-gray-900 shadow-sm min-h-[45px]
                                 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-Coral-Pink-300 focus:outline-0"
                                 min="1"
-                                defaultValue="1"
                                 max="10"
                             />
                         </div>
-                        <AddToCartBtn />
+                        <AddToCartBtn orderData={orderData} />
                     </div>
                 </div>
                 <div className="flex pt-3 mt-8 text-lg text-black border-t">
-                    <p className="ml-3 mr-5 font-medium">Category:</p>{" "}
+                    <p className="ml-3 mr-5 font-medium">Category:</p>
                     <button
                         className="p-0 uppercase bg-transparent border-none text-Coral-Pink-300 hover:cursor-pointer hover:text-Coral-Pink-300"
                         type="button"
@@ -120,3 +136,5 @@ export default function ProductInfo({ product }) {
         </div>
     );
 }
+
+// AddToCartBtn.jsx

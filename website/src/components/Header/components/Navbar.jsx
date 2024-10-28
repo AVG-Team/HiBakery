@@ -34,27 +34,12 @@ export default function Navbar() {
                             <a href="/chinh-sach-van-chuyen" className="text-gray-600 hover:text-gray-800">
                                 Hộ trợ
                             </a>
-                            {/* <a href="/logout" className="text-gray-600 hover:text-gray-800">
-                            Đăng xuất
-                        </a> */}
+                            <a href="/dang-nhap" className="text-gray-600 hover:text-gray-800">
+                                Đăng nhập
+                            </a>
                         </div>
                         {/* Cart Icon (always visible) */}
-                        <a href="/cart" className="text-gray-600 hover:text-gray-800">
-                            <svg
-                                className="w-6 h-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M3 3h18M3 8h18M3 13h18M3 18h18"
-                                ></path>
-                            </svg>
-                        </a>
+
                         {/* Hamburger Icon (for small screens) */}
                         <div className="flex items-center md:hidden">
                             <button className="text-gray-600 hover:text-gray-800 focus:outline-none">

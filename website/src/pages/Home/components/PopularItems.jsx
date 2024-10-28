@@ -2,8 +2,10 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
-const Item = ({ image, title, price }) => {
+const Item = ({ id, image, title, price }) => {
+    const navigate = useNavigate();
     const formattedPrice = new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(price);
     return (
         <div className="flex flex-col items-start justify-center w-48">
@@ -11,7 +13,10 @@ const Item = ({ image, title, price }) => {
             {/* Thêm fixed height và line-clamp cho title */}
             <p className="mt-2 mb-2 text-lg font-bold h-14 line-clamp-2 hover:line-clamp-none">{title}</p>
             <p className="my-3 text-sm text-Light-Apricot-500">{formattedPrice}</p>
-            <button className="w-full px-3 py-2 font-semibold text-white rounded-lg bg-Coral-Pink-500 hover:bg-Coral-Pink-300">
+            <button
+                onClick={() => navigate(`/san-pham/${id}`)}
+                className="w-full px-3 py-2 font-semibold text-white rounded-lg bg-Coral-Pink-500 hover:bg-Coral-Pink-300"
+            >
                 Đặt hàng ngay
             </button>
         </div>
@@ -19,6 +24,7 @@ const Item = ({ image, title, price }) => {
 };
 
 Item.propTypes = {
+    id: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
@@ -41,7 +47,7 @@ const Carousel = ({ items }) => {
         <div className="container relative w-full mx-auto">
             <div className="flex flex-row items-center justify-center w-full gap-4 py-10 overflow-hidden rounded-lg">
                 {visibleItems.map((item, index) => (
-                    <Item key={index} image={item.imagePath} title={item.title} price={item.price} />
+                    <Item key={index} id={item.id} image={item.imagePath} title={item.title} price={item.price} />
                 ))}
             </div>
             <button
