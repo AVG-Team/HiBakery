@@ -25,3 +25,4 @@ replay_pid*
 /node_modules/
 
 /backend/src/main/resources/static/bills/
+/src/
