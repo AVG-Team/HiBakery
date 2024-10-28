@@ -30,6 +30,7 @@ public class OrderBillDTO {
 //    private MultipartFile imagePayment;
     String categoryName;
     String imagePayment;
+    Long total;
     List<OrderItemDTO> orderItems;
 }
 

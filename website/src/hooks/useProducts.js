@@ -3,6 +3,8 @@ import productApi from "../services/api/Client/productApi";
 import productDetailApi from "../services/api/Client/productDetailApi";
 import imageApi from "../services/api/Client/imageApi";
 
+const productCache = new Map(); // Cache để lưu trữ chi tiết sản phẩm và hình ảnh
+
 export const useProducts = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -19,21 +21,18 @@ export const useProducts = () => {
             try {
                 setLoading(true);
                 console.log("Fetching products...");
-                // Fetch basic product data
                 const [salesResponse, popularResponse, productsResponse] = await Promise.all([
                     productApi.getSales(),
                     productApi.getPopular(7),
                     productApi.getAll(),
                 ]);
-                // Fetch details and images for sales products
+
                 const enrichedSalesProducts = await enrichProductData(salesResponse.result);
                 setSalesProducts(enrichedSalesProducts);
 
-                // Fetch details and images for popular products
                 const enrichedPopularProducts = await enrichProductData(popularResponse.result);
                 setPopularProducts(enrichedPopularProducts);
 
-                // Fetch details and images for all products
                 const enrichedProducts = await enrichProductData(productsResponse.result);
                 setProducts(enrichedProducts);
             } catch (err) {
@@ -53,33 +52,43 @@ export const useProducts = () => {
     }, []);
 
     const fetchProduct = async (id) => {
+        if (productCache.has(id)) {
+            setProduct(productCache.get(id)); // Lấy từ cache nếu có
+            return;
+        }
+
         setLoading(true);
         console.log("Fetching product...");
-        const response = await productApi.get(id);
-        const detail = await productDetailApi.get(response.result.id);
-        const image = await imageApi.get(detail.result.imageId);
+        try {
+            const response = await productApi.get(id);
+            const detailResponse = await productDetailApi.get(response.result.id);
+            const imageResponse = await imageApi.get(detailResponse.result.imageId);
 
-        const enrichedProduct = {
-            id: response.result.id,
-            categoryId: response.result.categoryId,
-            title: response.result.title,
-            price: detail.result.price,
-            imagePath: image.result.path,
-            ...detail.result,
-        };
-        console.log("Enriched product:", enrichedProduct);
-        setProduct(enrichedProduct);
+            const enrichedProduct = {
+                id: response.result.id,
+                categoryId: response.result.categoryId,
+                title: response.result.title,
+                price: detailResponse.result.price,
+                imagePath: imageResponse.result.path,
+                description: response.result.description,
+                ...detailResponse.result,
+            };
+            setProduct(enrichedProduct);
+        } catch (err) {
+            console.error("Error fetching product:", err);
+            setError(err);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const fetchProductsByCategory = async (categoryId) => {
         try {
             setLoading(true);
-            console.log("Fetching products by category...");
-            console.log("Category ID:", categoryId);
+            console.log("Fetching products by category...", categoryId);
             const categoryResponse = await productApi.getByCategory(categoryId || null);
 
             const enrichedCategoryProducts = await enrichProductData(categoryResponse.result);
-
             setProductByCategory(enrichedCategoryProducts);
         } catch (err) {
             console.error("Error fetching products by category:", err);
@@ -122,33 +131,34 @@ export const useProducts = () => {
     const enrichProductData = async (products) => {
         if (!products?.length) return [];
 
-        try {
-            // Fetch product details
-            const detailsPromises = products.map((product) => productDetailApi.get(product.id));
-            const detailsResponses = await Promise.all(detailsPromises);
-            const details = detailsResponses.map((res) => res.result);
+        const productIds = products.map((product) => product.id);
+        const uncachedIds = productIds.filter((id) => !productCache.has(id));
 
-            // Fetch images
-            const imagePromises = details
-                .map((detail) => (detail.imageId ? imageApi.get(detail.imageId) : null))
-                .filter(Boolean);
-
-            const imageResponses = await Promise.all(imagePromises);
-            const images = imageResponses.map((res) => res.result);
-
-            // Combine all data
-            return products.map((product, index) => ({
-                id: product.id,
-                categoryId: product.categoryId,
-                title: product.title,
-                price: details[index]?.price,
-                imagePath: images[index]?.path,
-                ...details[index],
-            }));
-        } catch (err) {
-            console.error("Error enriching product data:", err);
-            throw err;
+        if (uncachedIds.length > 0) {
+            await fetchProductDetailsAndImages(uncachedIds);
         }
+
+        return products.map((product) => ({
+            ...product,
+            ...productCache.get(product.id)?.details,
+            imagePath: productCache.get(product.id)?.imagePath,
+        }));
+    };
+
+    const fetchProductDetailsAndImages = async (productIds) => {
+        const detailsResponses = await Promise.all(productIds.map((id) => productDetailApi.get(id)));
+        const imageIds = detailsResponses.map((res) => res.result.imageId).filter(Boolean);
+        const imageResponses = await Promise.all(imageIds.map((id) => imageApi.get(id)));
+
+        detailsResponses.forEach((res, index) => {
+            const productId = res.result.id;
+            productCache.set(productId, {
+                details: res.result,
+                imagePath: imageIds[index]
+                    ? imageResponses.find((img) => img.result.id === imageIds[index]).result.path
+                    : null,
+            });
+        });
     };
 
     return {

@@ -2,22 +2,29 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
-const Item = ({ image, title, price }) => {
+const Item = ({ id, image, title, price }) => {
+    const navigate = useNavigate();
+    const formattedPrice = new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(price);
     return (
         <div className="flex flex-col items-start justify-center w-48">
             <img className="object-cover w-48 h-48 rounded-lg" src={image} alt={title} />
             {/* Thêm fixed height và line-clamp cho title */}
             <p className="mt-2 mb-2 text-lg font-bold h-14 line-clamp-2 hover:line-clamp-none">{title}</p>
-            <p className="my-3 text-sm text-Light-Apricot-500">{price}</p>
-            <button className="w-full px-3 py-2 font-semibold text-white rounded-lg bg-Coral-Pink-500 hover:bg-Coral-Pink-300">
-                Order now
+            <p className="my-3 text-sm text-Light-Apricot-500">{formattedPrice}</p>
+            <button
+                onClick={() => navigate(`/san-pham/${id}`)}
+                className="w-full px-3 py-2 font-semibold text-white rounded-lg bg-Coral-Pink-500 hover:bg-Coral-Pink-300"
+            >
+                Đặt hàng ngay
             </button>
         </div>
     );
 };
 
 Item.propTypes = {
+    id: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
@@ -40,7 +47,7 @@ const Carousel = ({ items }) => {
         <div className="container relative w-full mx-auto">
             <div className="flex flex-row items-center justify-center w-full gap-4 py-10 overflow-hidden rounded-lg">
                 {visibleItems.map((item, index) => (
-                    <Item key={index} image={item.imagePath} title={item.title} price={item.price} />
+                    <Item key={index} id={item.id} image={item.imagePath} title={item.title} price={item.price} />
                 ))}
             </div>
             <button
@@ -85,7 +92,7 @@ const PopularItems = ({ products }) => {
         <div className="w-full py-20 mt-10">
             <div className="flex flex-col items-center justify-center">
                 <div className="flex items-center justify-center p-4 mb-5">
-                    <p className="text-3xl font-bold text-center text-Coral-Pink-500">Popular Items</p>
+                    <p className="text-3xl font-bold text-center text-Coral-Pink-500">Sản phẩm nổi bật</p>
                 </div>
                 <Carousel items={products} />
             </div>

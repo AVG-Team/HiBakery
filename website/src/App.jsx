@@ -41,7 +41,7 @@ export default function App() {
                         path="/san-pham"
                         element={
                             <Suspense fallback={<CircularProgress />}>
-                                <Products title="Products" />
+                                <Products title="Sản phẩm" />
                             </Suspense>
                         }
                     />
@@ -49,7 +49,7 @@ export default function App() {
                         path="/san-pham/:id"
                         element={
                             <Suspense fallback={<CircularProgress />}>
-                                <Product title="Product" />
+                                <Product title="Sản phẩm bạn đang xem" />
                             </Suspense>
                         }
                     />

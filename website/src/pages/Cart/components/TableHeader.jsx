@@ -4,13 +4,13 @@ const TableHeader = () => (
             <div className="flex justify-center w-8">
                 <input type="checkbox" className="w-4 h-4" />
             </div>
-            <h3 className="text-lg font-semibold">Products</h3>
+            <h3 className="text-lg font-semibold">Sản phẩm</h3>
         </div>
         <div className="flex items-center space-x-8">
-            <span className="w-24 font-semibold text-center">Prices</span>
-            <span className="w-24 font-semibold text-center">Quantity</span>
-            <span className="w-24 font-semibold text-center">Total</span>
-            <span className="w-24 font-semibold text-center">Action</span>
+            <span className="w-24 font-semibold text-center">Giá</span>
+            <span className="w-24 font-semibold text-center">Số lượng</span>
+            <span className="w-24 font-semibold text-center">Tổng tiền</span>
+            <span className="w-24 font-semibold text-center"></span>
         </div>
     </div>
 );

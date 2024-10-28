@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 const Item = ({ item }) => {
     return (
-        <div className="flex flex-col justify-center">
+        <a href={`/san-pham/${item.id}`} className="flex flex-col justify-center">
             <div className="relative flex">
                 <div className="relative rounded-xl">
                     <img alt="Item" className="relative object-cover w-64 h-64 rounded-lg" src={item.imagePath} />
@@ -13,10 +13,10 @@ const Item = ({ item }) => {
             <div className="flex flex-col items-start">
                 <p className="mt-4 text-lg font-bold">{item.title}</p>
                 <div className="px-3 py-2 mt-2 rounded-lg text-Coral-Pink-500 bg-Light-Apricot-500">
-                    <p className="text-sm font-bold">6 Days Remaining</p>
+                    <p className="text-sm font-bold">Còn 6 ngày</p>
                 </div>
             </div>
-        </div>
+        </a>
     );
 };
 
@@ -45,6 +45,7 @@ Item.propTypes = {
     item: PropTypes.shape({
         title: PropTypes.string.isRequired,
         imagePath: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
     }).isRequired,
 };
 

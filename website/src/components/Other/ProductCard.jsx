@@ -33,7 +33,7 @@ export default function ProductCard({ product }) {
                     "
                     onClick={openDialog} // Gọi hàm openDialog
                 >
-                    Add to Cart
+                    Thêm vào giỏ hàng
                 </button>
             </div>
             <h3 className="mt-4 font-semibold text-center text-Coral-Pink-500 text-md">{product.title}</h3>
@@ -44,7 +44,7 @@ export default function ProductCard({ product }) {
                         viewBox="0 0 24 24"
                         fill="currentColor"
                         key={star}
-                        className={`size-6 mr-1 ${star <= product.rating ? "text-yellow-500" : "text-gray-300"}`}
+                        className={`size-6 mr-1 ${star <= 4 ? "text-yellow-500" : "text-gray-300"}`}
                     >
                         <path
                             fillRule="evenodd"
@@ -62,6 +62,7 @@ export default function ProductCard({ product }) {
                     onClose={closeDialog}
                     productName={product.name}
                     productPrice={priceFormat}
+                    product={product}
                 />
             )}
         </a>

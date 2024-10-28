@@ -24,3 +24,5 @@ hs_err_pid*
 replay_pid*
 /node_modules/
 
+/backend/src/main/resources/static/bills/
+/src/

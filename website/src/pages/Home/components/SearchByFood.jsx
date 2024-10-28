@@ -40,9 +40,12 @@ const Carousel = ({ items }) => {
                     <Item key={index} image={item.imagePath} title={item.title} price={item.price} />
                 ))}
             </div>
-            <p className="absolute top-0 w-20 h-10 p-2 text-lg transition-all transform -translate-y-1/2 right-36 hover:bg-opacity-75 text-Light-Apricot-600 hover:text-Light-Apricot-300">
-                View all
-            </p>
+            <a
+                href="/san-pham"
+                className="absolute top-0 w-20 h-10 p-2 text-lg transition-all transform -translate-y-1/2 right-36 hover:bg-opacity-75 text-Light-Apricot-600 hover:text-Light-Apricot-300"
+            >
+                Xem thêm
+            </a>
             <button
                 onClick={prevSlide}
                 className="absolute top-0 w-10 h-10 p-2 transition-all transform -translate-y-1/2 rounded-full bg-Coral-Pink-500 right-24 hover:bg-opacity-75"
@@ -84,7 +87,7 @@ export default function SearchByFood({ products }) {
     return (
         <div className="w-full py-20  bg-Light-Apricot-500/[20%]">
             <div className="flex justify-start p-4 mb-5">
-                <p className="text-3xl font-bold text-Coral-Pink-500">Search By Food</p>
+                <p className="text-3xl font-bold text-Coral-Pink-500">Tìm kiếm theo sản phẩm</p>
             </div>
             <div className="flex flex-col items-center justify-center">
                 <Carousel items={products} />

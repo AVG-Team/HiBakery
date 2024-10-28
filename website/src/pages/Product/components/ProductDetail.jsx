@@ -27,7 +27,7 @@ function ProductDetail({ product }) {
                             <ProductInfo product={product} />
                         </div>
                     </div>
-                    {/* <ProductDescription product={product} /> */}
+                    <ProductDescription product={product} />
                     <RelatedProducts categoryId={product.categoryId} />
                 </div>
             </div>

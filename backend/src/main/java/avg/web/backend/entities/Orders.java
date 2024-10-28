@@ -25,7 +25,6 @@ public class Orders extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
 
-    @NotBlank(message = "User ID cannot be blank")
     Long userId;
 
     @NotBlank(message = "Name cannot be blank")

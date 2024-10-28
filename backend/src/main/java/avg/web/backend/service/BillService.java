@@ -24,9 +24,6 @@ public final class BillService implements BaseService<BillsDTO,String> {
 
     @Override
     public BillsDTO create(BillsDTO DTO) {
-        if(repository.existsById(DTO.getId())) {
-            throw new AppException(ErrorCode.ENTITY_EXISTS);
-        }
         Bills entity = mapper.toEntity(DTO);
         entity = repository.save(entity);
         return mapper.toDto(entity);
